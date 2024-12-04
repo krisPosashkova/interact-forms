@@ -1,14 +1,14 @@
 "use client";
 
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/useMode";
 import { LightMode, DarkMode } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import { motion } from "framer-motion";
 
-const ThemeSwitcher = () => {
-    const { theme, toggleTheme } = useTheme();
+const ModeSwitcher = () => {
+    const { mode, toggleMode } = useTheme();
 
-    if (theme === undefined) {
+    if (mode === undefined) {
         return null;
     }
 
@@ -23,11 +23,11 @@ const ThemeSwitcher = () => {
                     transition:
                         "background-color var(--custom-durations-ms300)",
                 }}
-                onClick={toggleTheme}>
-                {theme === "light" ? <DarkMode /> : <LightMode />}
+                onClick={toggleMode}>
+                {mode === "light" ? <DarkMode /> : <LightMode />}
             </IconButton>
         </motion.div>
     );
 };
 
-export default ThemeSwitcher;
+export default ModeSwitcher;

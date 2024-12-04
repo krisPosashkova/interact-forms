@@ -4,12 +4,12 @@ export const useTheme = () => {
     const { mode, setMode } = useColorScheme();
 
     if (!mode || !setMode) {
-        return { theme: mode, toggleTheme: () => {} };
+        return { mode, toggleMode: () => {} };
     }
 
-    const toggleTheme = () => {
+    const toggleMode = () => {
         setMode(mode === "dark" ? "light" : "dark");
     };
 
-    return { theme: mode, toggleTheme };
+    return { mode, toggleMode };
 };
