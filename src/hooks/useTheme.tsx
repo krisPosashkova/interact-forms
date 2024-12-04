@@ -4,7 +4,7 @@ export const useTheme = () => {
     const { mode, setMode } = useColorScheme();
 
     if (!mode || !setMode) {
-        return { theme: "light", toggleTheme: () => {} };
+        return { theme: mode, toggleTheme: () => {} };
     }
 
     const toggleTheme = () => {
