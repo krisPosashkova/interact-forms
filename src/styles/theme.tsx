@@ -29,6 +29,9 @@ export const theme = createTheme({
                 error: {
                     main: "#ac0e0e",
                 },
+                action: {
+                    hoverOpacity: 0.09,
+                },
             },
         },
         dark: {
@@ -119,7 +122,7 @@ export const theme = createTheme({
 
         // in ms
         durations: {
-            ms300: 0.3,
+            ms300: "0.3s",
         },
     },
 });

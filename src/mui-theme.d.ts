@@ -11,7 +11,7 @@ interface CustomTheme {
     gradient?: string;
     spacer?: number;
     durations: {
-        ms300?: number;
+        ms300?: string;
     };
 }
 

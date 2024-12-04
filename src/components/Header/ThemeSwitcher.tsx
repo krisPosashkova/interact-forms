@@ -8,7 +8,12 @@ const ThemeSwitcher = () => {
     const { theme, toggleTheme } = useTheme();
 
     return (
-        <IconButton type="button" onClick={toggleTheme}>
+        <IconButton
+            type="button"
+            sx={{
+                transition: "background-color var(--custom-durations-ms300)",
+            }}
+            onClick={toggleTheme}>
             {theme === "light" ? <DarkMode /> : <LightMode />}
         </IconButton>
     );

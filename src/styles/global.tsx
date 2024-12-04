@@ -38,10 +38,16 @@ export default createGlobalStyle`
         background-color: transparent;
         border: none;
         user-select: none;
+        transition: background-color var(--custom-durations-ms300);
     }
 
     a {
         text-decoration: none;
         color: inherit;
+        transition: opacity var(--custom-durations-ms300);
+    }
+
+    a:hover {
+        opacity: var(--custom-opacity);  
     }
 `;
