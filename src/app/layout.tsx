@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Zen_Dots } from "next/font/google";
 import AppThemeProvider from "@/providers/AppThemeProvider";
+import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
 
 const inter = Inter({
     weight: ["400", "600"],
@@ -28,8 +29,13 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className={`${inter.variable} ${zen_dots.variable}`}>
+        <html
+            lang="en"
+            className={`${inter.variable} ${zen_dots.variable}`}
+            suppressHydrationWarning>
             <body>
+                <InitColorSchemeScript attribute="data" />
+
                 <AppThemeProvider>{children}</AppThemeProvider>
             </body>
         </html>

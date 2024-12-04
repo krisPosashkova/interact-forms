@@ -19,12 +19,12 @@ export default createGlobalStyle`
     }
 
     body {
-        background-color: ${({ theme }) => theme.palette.background.default};
+        background-color: var(--palete-background-default);
         font-family: var(--font-primary), sans-serif;
         font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem);
         font-weight: 400;
         line-height: 1.2;
-        color: ${({ theme }) => theme.palette.text.primary}; 
+        color: var(--palete-text-primary)
     }
 
     ul,

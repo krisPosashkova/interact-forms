@@ -1,27 +1,60 @@
 import { createTheme } from "@mui/material/styles";
 
 export const theme = createTheme({
-    palette: {
-        background: {
-            default: "#f5f5f5",
-            paper: "#eeeeee",
+    cssVariables: {
+        cssVarPrefix: "",
+        colorSchemeSelector: "data",
+    },
+    colorSchemes: {
+        light: {
+            palette: {
+                background: {
+                    default: "#f5f5f5",
+                    paper: "#eeeeee",
+                },
+                text: {
+                    primary: "#202020",
+                    secondary: "#444444",
+                },
+                primary: {
+                    main: "#5356fcf0",
+                    light: "#8F8FFF",
+                    dark: "#5b5bb1",
+                },
+                secondary: {
+                    main: "#e782a5",
+                    light: "#ffb3c1",
+                    dark: "#b36b7e",
+                },
+                error: {
+                    main: "#ac0e0e",
+                },
+            },
         },
-        text: {
-            primary: "#202020",
-            secondary: "#444444",
-        },
-        primary: {
-            main: "#5356fcf0",
-            light: "#8F8FFF",
-            dark: "#5b5bb1",
-        },
-        secondary: {
-            main: "#e782a5",
-            light: "#ffb3c1",
-            dark: "#b36b7e",
-        },
-        error: {
-            main: "#ac0e0e",
+        dark: {
+            palette: {
+                background: {
+                    default: "#2e2e2e",
+                    paper: "#1b1b1b",
+                },
+                text: {
+                    primary: "#f7f7f7",
+                    secondary: "#f3f3ef",
+                },
+                primary: {
+                    main: "#5356fcf0",
+                    light: "#8F8FFF",
+                    dark: "#5b5bb1",
+                },
+                secondary: {
+                    main: "#e782a5",
+                    light: "#ffb3c1",
+                    dark: "#b36b7e",
+                },
+                error: {
+                    main: "#ac0e0e",
+                },
+            },
         },
     },
 

@@ -5,6 +5,7 @@ import GlobalStyle from "@/styles/global";
 import { theme } from "@/styles/theme";
 import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
+import Header from "@/components/Header/Header";
 
 export default function AppThemeProvider({
     children,
@@ -17,6 +18,7 @@ export default function AppThemeProvider({
                 <StyledThemeProvider theme={theme}>
                     <>
                         <GlobalStyle />
+                        <Header />
 
                         {children}
                     </>
