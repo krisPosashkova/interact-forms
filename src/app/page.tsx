@@ -1,10 +1,8 @@
-import { Container, Typography } from "@mui/material";
-export default function Home() {
-    return (
-        <Container maxWidth="xl">
-            <Typography component="h1" variant="h1">
-                Interact Forms
-            </Typography>
-        </Container>
-    );
+import { redirect, routing } from "@/i18n/routing";
+
+export default function RootPage() {
+    redirect({
+        href: "/",
+        locale: routing.defaultLocale,
+    });
 }

@@ -1,0 +1,18 @@
+{
+    "Homepage": {
+        "title": "Welcome to the homepage",
+        "content": "This is the homepage content"
+    },
+    "Meta": {
+        "title": "Interact Forms",
+        "description": "Interact Forms – a versatile tool for creating interactive forms, surveys, and questionnaires. It offers flexibility and ease of customization, ensuring a seamless user experience. Perfect for data collection, process automation, and audience engagement."
+    },
+    "NotFoundPage": {
+        "title": "Not Found Page",
+        "goBackButton": "Go Home"
+    },
+    "locales": {
+        "en": "En",
+        "ru": "Ru"
+    }
+}
