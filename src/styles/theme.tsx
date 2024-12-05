@@ -20,6 +20,7 @@ export const theme = createTheme({
                     main: "#5356fcf0",
                     light: "#8F8FFF",
                     dark: "#5b5bb1",
+                    contrastText: "#f5f5f5",
                 },
                 secondary: {
                     main: "#e782a5",
@@ -48,6 +49,7 @@ export const theme = createTheme({
                     main: "#5356fcf0",
                     light: "#8F8FFF",
                     dark: "#5b5bb1",
+                    contrastText: "#1b1b1b",
                 },
                 secondary: {
                     main: "#e782a5",
@@ -106,6 +108,41 @@ export const theme = createTheme({
             fontSize: "clamp(1rem, 1.5vw + 0.5rem, 1.5rem)",
             fontWeight: 600,
             lineHeight: 1.3,
+        },
+    },
+    components: {
+        MuiSelect: {
+            styleOverrides: {
+                root: {
+                    "&:before": {
+                        content: '""',
+                        borderBottom: "1px solid transparent",
+                    },
+                    "&.Mui-focused:after": {
+                        borderBottom: "1px solid transparent",
+                    },
+
+                    "&:active": {
+                        "&:before": {
+                            borderBottom: "1px solid transparent",
+                        },
+                    },
+                },
+            },
+        },
+        MuiButton: {
+            styleOverrides: {
+                outlined: {
+                    borderColor: "var(--variant-outlinedColor)",
+                    color: "var(--variant-outlinedColor)",
+                    "--variant-outlinedColor": "var(--palette-text-primary)",
+
+                    "&:hover": {
+                        backgroundColor: "var(--variant-outlinedColor)",
+                        color: "var(--palette-primary-contrastText)",
+                    },
+                },
+            },
         },
     },
 
