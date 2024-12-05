@@ -1,6 +1,6 @@
 "use client";
-import React, { useMemo } from "react";
-import Link from "next/link";
+import React, { useMemo, memo } from "react";
+import { Link } from "@/i18n/routing";
 
 import {
     Typography,
@@ -15,6 +15,7 @@ import { CustomHeader } from "./Header.styled";
 import CustomMenu from "@/components/CustomMenu/Menu";
 import ListItems from "@/components/Common/ListItems";
 import ModeSwitcher from "@/components/UI/ModeSwitcher";
+import LocaleSwitcher from "@/components/UI/LocaleSwitcher";
 
 import { useMedia } from "@/hooks/useMedia";
 import { useMenu } from "@/hooks/useMenu";
@@ -22,7 +23,13 @@ import { useMenu } from "@/hooks/useMenu";
 const Header = () => {
     const { isMobileOrTablet } = useMedia();
     const { openMenu, toggleMenu } = useMenu();
-    const menuItems = useMemo(() => [<ModeSwitcher key="modeSwitcher" />], []);
+    const menuItems = useMemo(
+        () => [
+            <ModeSwitcher key="modeSwitcher" />,
+            <LocaleSwitcher key="localeSwitcher" />,
+        ],
+        []
+    );
     return (
         <CustomHeader>
             <Container maxWidth="xl">
@@ -61,4 +68,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default memo(Header);
