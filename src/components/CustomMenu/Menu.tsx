@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Drawer, IconButton, List } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import { CustomMenuProps } from "./menu.types";
@@ -27,4 +27,4 @@ const CustomMenu: React.FC<CustomMenuProps> = ({
     );
 };
 
-export default CustomMenu;
+export default memo(CustomMenu);

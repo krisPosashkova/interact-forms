@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { toggleState } from "@/utils/toggleState";
+
 export const useMenu = () => {
     const [openMenu, setOpenMenu] = useState(false);
-    const toggleMenu = () => toggleState(setOpenMenu);
+
+    const toggleMenu = useCallback(() => {
+        toggleState(setOpenMenu);
+    }, []);
 
     return {
         openMenu,
