@@ -9,18 +9,23 @@ const CustomMenu: React.FC<CustomMenuProps> = ({
     children,
 }) => {
     return (
-        <Drawer anchor="left" open={openMenu} onClose={toggleMenu}>
+        <Drawer anchor="left" open={openMenu} onClose={toggleMenu} keepMounted>
             <IconButton
                 onClick={toggleMenu}
                 sx={{
-                    position: "absolute",
-                    top: 10,
-                    right: 10,
+                    justifyContent: "end",
                 }}>
                 <Close />
             </IconButton>
 
-            <List sx={{ width: "250px" }} onClick={toggleMenu}>
+            <List
+                sx={{
+                    width: {
+                        xs: "100svw",
+                        sm: "250px",
+                    },
+                }}
+                onClick={toggleMenu}>
                 {children}
             </List>
         </Drawer>
