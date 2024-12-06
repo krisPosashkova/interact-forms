@@ -9,10 +9,35 @@ export const CustomHeader = styled.header(({ theme }) => ({
     color: theme.vars.palette.text.primary,
     width: "100%",
     boxShadow: "0 -2px 6px #5d5c5c",
+    backgroundColor: theme.vars.palette.background.paper,
+
+    ".logo": { whiteSpace: "nowrap" },
+
+    ".p-0": {
+        padding: 0,
+    },
 
     ".flex-align-center": {
         display: "flex",
         alignItems: "center",
-        gap: "10px",
+        gap: 10,
+    },
+
+    [theme.breakpoints.between("xs", "md")]: {
+        ".is-mobile": {
+            display: "block",
+        },
+        ".is-desktop": {
+            display: "none",
+        },
+    },
+
+    [theme.breakpoints.up("md")]: {
+        ".is-mobile": {
+            display: "none",
+        },
+        ".is-desktop": {
+            display: "block",
+        },
     },
 }));

@@ -2,13 +2,7 @@
 import React, { useMemo, memo } from "react";
 import { Link } from "@/i18n/routing";
 
-import {
-    Typography,
-    Container,
-    IconButton,
-    List,
-    ListItem,
-} from "@mui/material";
+import { Typography, Container, IconButton, List } from "@mui/material";
 import { DynamicForm, Menu } from "@mui/icons-material";
 import { CustomHeader } from "./Header.styled";
 
@@ -17,18 +11,33 @@ import ListItems from "@/components/Common/ListItems";
 import ModeSwitcher from "@/components/UI/ModeSwitcher";
 import LocaleSwitcher from "@/components/UI/LocaleSwitcher";
 
-import { useMedia } from "@/hooks/useMedia";
 import { useMenu } from "@/hooks/useMenu";
 
 const Header = () => {
-    const { isMobileOrTablet } = useMedia();
     const { openMenu, toggleMenu } = useMenu();
     const menuItems = useMemo(
+        () => [
+            <>
+                <ModeSwitcher key="modeSwitcher" />
+                <LocaleSwitcher key="localeSwitcher" />
+            </>,
+        ],
+        []
+    );
+    const headerItems = useMemo(
         () => [
             <ModeSwitcher key="modeSwitcher" />,
             <LocaleSwitcher key="localeSwitcher" />,
         ],
         []
+    );
+    const headerMobileItems = useMemo(
+        () => [
+            <IconButton className="p-0" key="menuButton" onClick={toggleMenu}>
+                <Menu />
+            </IconButton>,
+        ],
+        [toggleMenu]
     );
     return (
         <CustomHeader>
@@ -43,21 +52,23 @@ const Header = () => {
                         justifyContent: "space-between",
                         height: "70px",
                     }}>
-                    <Link href={"/"} className="flex-align-center">
+                    <Link href={"/"} className="logo flex-align-center">
                         <DynamicForm />
-                        <span>InteractForms</span>
+                        <span>I-Forms</span>
                     </Link>
 
                     <List className="flex-align-center">
-                        {isMobileOrTablet ? (
-                            <ListItem component="li">
-                                <IconButton onClick={toggleMenu}>
-                                    <Menu />
-                                </IconButton>
-                            </ListItem>
-                        ) : (
-                            <ListItems nameComponent="li" items={menuItems} />
-                        )}
+                        <ListItems
+                            className="is-desktop p-0"
+                            nameComponent="li"
+                            items={headerItems}
+                        />
+
+                        <ListItems
+                            nameComponent="li"
+                            className="is-mobile p-0"
+                            items={headerMobileItems}
+                        />
                     </List>
                 </Typography>
             </Container>
