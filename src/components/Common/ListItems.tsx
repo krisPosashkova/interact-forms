@@ -18,6 +18,7 @@ const ListItems: React.FC<ListItemsProps> = ({
                 <ListItem
                     component={nameComponent}
                     key={index}
+                    sx={{ gap: 1 }}
                     className={className}>
                     {item}
                 </ListItem>
