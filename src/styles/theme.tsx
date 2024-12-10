@@ -46,9 +46,9 @@ export const theme = createTheme({
                     secondary: "#f3f3ef",
                 },
                 primary: {
-                    main: "#5356fcf0",
+                    main: "#474ae4ef",
                     light: "#8F8FFF",
-                    dark: "#5b5bb1",
+                    dark: "#3739b1ee",
                     contrastText: "#1b1b1b",
                 },
                 secondary: {
@@ -108,6 +108,7 @@ export const theme = createTheme({
             fontSize: "clamp(1rem, 1.5vw + 0.5rem, 1.5rem)",
             fontWeight: 600,
             lineHeight: 1.3,
+            letterSpacing: 1.5,
         },
     },
     components: {
@@ -132,6 +133,13 @@ export const theme = createTheme({
         },
         MuiButton: {
             styleOverrides: {
+                root: {
+                    textTransform: "none",
+                    fontWeight: 600,
+                },
+                contained: {
+                    color: "var(--palette-text-primary)",
+                },
                 outlined: {
                     borderColor: "var(--variant-outlinedColor)",
                     color: "var(--variant-outlinedColor)",
