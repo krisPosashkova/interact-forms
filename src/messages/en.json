@@ -1,7 +1,9 @@
 {
     "Homepage": {
-        "title": "Welcome to the homepage",
-        "content": "This is the homepage content"
+        "title": "Interact Forms",
+        "content": "This application is a universal tool for creating interactive forms, \n surveys and questionnaires. It combines ease of customization with flexibility,\n ensuring a seamless user experience.",
+        "getStarted": "Get started",
+        "viewTemplates": "View templates"
     },
     "Meta": {
         "title": "Interact Forms",
