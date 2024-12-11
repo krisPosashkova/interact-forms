@@ -53,10 +53,18 @@
             }
         },
         "name": {
-            "label": "Имя",
+            "label": "Name",
             "validation": {
                 "required": "Name is a required field"
             }
         }
+    },
+    "Search": {
+        "title": "Search",
+        "placeholder": "What are you looking for?",
+        "noResult": "No results found"
+    },
+    "Event": {
+        "close": "Close"
     }
 }

@@ -70,6 +70,11 @@ export const theme = createTheme({
             fontWeight: 400,
             lineHeight: 1.2,
         },
+        caption: {
+            fontSize: "clamp(0.6rem, 1.5vw + 0.5rem, 0.7rem)",
+            fontWeight: 400,
+            lineHeight: "normal",
+        },
 
         body1: {
             fontSize: "clamp(0.875rem, 1.5vw + 0.5rem, 1.125rem)",
