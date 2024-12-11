@@ -1,4 +1,24 @@
 {
+    "SignIn": {
+        "title": "Sign In",
+        "description": "Sign in to your account",
+        "prompt": "Don't have an account?",
+        "event": "Sign In",
+        "link": {
+            "text": "Sign Up",
+            "href": "/signup"
+        }
+    },
+    "SignUp": {
+        "title": "Sign Up",
+        "description": "Create your account",
+        "prompt": "Already have an account?",
+        "event": "Sign Up",
+        "link": {
+            "text": "Sign In",
+            "href": "/signin"
+        }
+    },
     "Homepage": {
         "title": "Interact Forms",
         "content": "This application is a universal tool for creating interactive forms, \n surveys and questionnaires. It combines ease of customization with flexibility,\n ensuring a seamless user experience.",
@@ -16,5 +36,27 @@
     "locales": {
         "en": "En",
         "ru": "Ru"
+    },
+    "AuthForm": {
+        "email": {
+            "label": "Email",
+            "validation": {
+                "required": "Email is a required field",
+                "invalid": "Invalid email address"
+            }
+        },
+        "password": {
+            "label": "Password",
+            "validation": {
+                "required": "Password is a required field",
+                "minLength": "Password must be at least 6 characters"
+            }
+        },
+        "name": {
+            "label": "Имя",
+            "validation": {
+                "required": "Name is a required field"
+            }
+        }
     }
 }
