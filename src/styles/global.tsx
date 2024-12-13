@@ -44,10 +44,10 @@ export default createGlobalStyle`
     a {
         text-decoration: none;
         color: inherit;
-        transition: opacity var(--custom-durations-ms300);
+        /* transition: opacity var(--custom-durations-ms300); */
     }
 
     a:hover {
-        opacity: var(--custom-opacity);  
+        /* opacity: var(--custom-opacity); */
     }
 `;

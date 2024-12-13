@@ -23,9 +23,9 @@ export const theme = createTheme({
                     contrastText: "#f5f5f5",
                 },
                 secondary: {
-                    main: "#e782a5",
-                    light: "#ffb3c1",
-                    dark: "#b36b7e",
+                    main: "#e58be2",
+                    light: "#e167dd",
+                    dark: "#b83cb4",
                 },
                 error: {
                     main: "#ac0e0e",
@@ -49,12 +49,12 @@ export const theme = createTheme({
                     main: "#474ae4ef",
                     light: "#8F8FFF",
                     dark: "#3739b1ee",
-                    contrastText: "#1b1b1b",
+                    contrastText: "#f5f5f5",
                 },
                 secondary: {
-                    main: "#e782a5",
-                    light: "#ffb3c1",
-                    dark: "#b36b7e",
+                    main: "#e58be2",
+                    light: "#e167dd",
+                    dark: "#b83cb4",
                 },
                 error: {
                     main: "#ac0e0e",
@@ -143,7 +143,7 @@ export const theme = createTheme({
                     fontWeight: 600,
                 },
                 contained: {
-                    color: "var(--palette-text-primary)",
+                    // color: "var(--palette-text-primary)",
                 },
                 outlined: {
                     borderColor: "var(--variant-outlinedColor)",
