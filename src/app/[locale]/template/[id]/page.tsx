@@ -4,7 +4,7 @@ import { Container, Typography } from "@mui/material";
 type Props = {
     params: Promise<{ id: string }>;
 };
-export default async function Template({ params }: Props) {
+export default async function TemplatePage({ params }: Props) {
     const { id } = await params;
     return (
         <PageLayout>
