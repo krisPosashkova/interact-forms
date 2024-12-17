@@ -1,12 +1,11 @@
 import { memo } from "react";
 import { Stack } from "@mui/material";
 import Tag from "./Tag";
+import {ITagList} from "@/types/templates/tag.types";
 
-interface TagsListProps {
-    tags: { id: number | string; name: string }[];
-}
 
-const TagsList = ({ tags }: TagsListProps) => {
+
+const TagsList = ({ tags }: ITagList) => {
     return (
         <Stack
             direction="row"
@@ -16,9 +15,9 @@ const TagsList = ({ tags }: TagsListProps) => {
             component="nav"
             aria-label="tags navigation"
         >
-            <Tag label="All" />
+            <Tag name="All" />
             {tags.map((tag) => (
-                <Tag key={tag.id} id={tag.id} label={tag.name} />
+                <Tag key={tag.id} id={tag.id} name={tag.name} />
             ))}
         </Stack>
     );

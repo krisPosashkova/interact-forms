@@ -23,7 +23,11 @@
         "title": "Interact Forms",
         "content": "This application is a universal tool for creating interactive forms, \n surveys and questionnaires. It combines ease of customization with flexibility,\n ensuring a seamless user experience.",
         "getStarted": "Get started",
-        "viewTemplates": "View templates"
+        "templates": "Templates",
+        "viewTemplates": "View templates",
+        "popularTemplates": "Popular templates",
+        "latestTemplates": "Latest templates",
+        "allTemplates": "All templates"
     },
     "Meta": {
         "title": "Interact Forms",
@@ -66,5 +70,8 @@
     },
     "Event": {
         "close": "Close"
+    },
+    "Template": {
+        "author": "Author"
     }
 }

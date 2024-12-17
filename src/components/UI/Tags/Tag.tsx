@@ -3,18 +3,15 @@ import { memo } from "react";
 import { Chip } from "@mui/material";
 import { Link } from "@/i18n/routing";
 import { useActiveTag } from "@/hooks/useActiveTag";
+import {ITag} from "@/types/templates/tag.types"
 
-interface TagProps {
-    id?: number | string;
-    label: string;
-}
 
-const Tag = ({ id, label }: TagProps) => {
+const Tag = ({ id, name }: ITag) => {
     const { hrefTag, isActive } = useActiveTag(id);
 
     return (
         <Chip
-            label={label}
+            label={name}
             component={Link}
             href={hrefTag}
             variant={isActive ? "filled" : "outlined"}
