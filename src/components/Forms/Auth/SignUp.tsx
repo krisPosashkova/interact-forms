@@ -1,25 +1,39 @@
 "use client";
 
 import React from "react";
-import { useAuthFormFields } from "./useAuthFormFields";
+import {useAuthFormFields} from "./useAuthFormFields";
 import DynamicForm from "../index";
-import { FieldValues } from "react-hook-form";
-import { FormContent } from "@/types/components/form.types";
+import {FieldValues} from "react-hook-form";
+import {FormContent} from "@/types/components/form.types";
+import {register} from "@/app/actions/auth";
+import {IUser} from "@/types/apiResponse.types";
+import {useRouter} from "@/i18n/routing";
 
-const handleRegister = async (
-    data: FieldValues
-): Promise<{ success: boolean; message: string }> => {
-    console.log("Register", data);
-    return { success: true, message: "User registered successfully" };
-};
 
 interface FormSignUpProps {
     t: FormContent;
 }
 
-const FormSignUp = ({ t }: FormSignUpProps) => {
-    const { signUpFields } = useAuthFormFields();
-    const { title, description } = t;
+const FormSignUp = ({t}: FormSignUpProps) => {
+    const {signUpFields} = useAuthFormFields();
+    const router = useRouter();
+    
+    const handleRegister = async (
+        data: FieldValues
+    ): Promise<{ success: boolean; message: string }> => {
+
+        const reg = await register<IUser>(data);
+
+        if (reg.success) {
+            console.log(reg, "Registration success");
+            router.push("/signin");
+            return {success: true, message: reg.message};
+        } else {
+            return {success: false, message: reg.error};
+        }
+    };
+
+    const {title, description} = t;
     const content = {
         title,
         description,

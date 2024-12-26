@@ -1,10 +1,12 @@
 // import type { Metadata } from "next";
-import { ReactNode } from "react";
-import { Inter, Zen_Dots } from "next/font/google";
+import {ReactNode} from "react";
+import {Inter, Zen_Dots} from "next/font/google";
 import AppThemeProvider from "@/providers/AppThemeProvider";
 import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import {NextIntlClientProvider} from "next-intl";
+import {getMessages} from "next-intl/server";
+import {SessionProvider} from "next-auth/react";
+import {auth} from "@/lib/auth";
 
 const inter = Inter({
     weight: ["400", "600"],
@@ -31,20 +33,27 @@ type Props = {
     locale: string;
 };
 
-export default async function BaseLayout({ children, locale }: Props) {
+export default async function BaseLayout({children, locale}: Props) {
     const messages = await getMessages();
+    const session = await auth();
 
     return (
-        <html
-            lang={locale}
-            className={`${inter.variable} ${zen_dots.variable}`}
-            suppressHydrationWarning>
+        <SessionProvider session={session}>
+
+            <html
+                lang={locale}
+                className={`${inter.variable} ${zen_dots.variable}`}
+                suppressHydrationWarning>
             <body>
-                <NextIntlClientProvider messages={messages}>
-                    <InitColorSchemeScript attribute="data" />
-                    <AppThemeProvider>{children}</AppThemeProvider>
-                </NextIntlClientProvider>
+            <NextIntlClientProvider messages={messages}>
+                <InitColorSchemeScript attribute="data"/>
+                <AppThemeProvider>{children}</AppThemeProvider>
+            </NextIntlClientProvider>
+
+
             </body>
-        </html>
+            </html>
+        </SessionProvider>
+
     );
 }

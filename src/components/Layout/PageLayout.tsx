@@ -1,18 +1,17 @@
-import { ReactNode } from "react";
-import Header from "@/components/Header/Header";
-import { Box } from "@mui/material";
-import SearchComponent from "@/components/UI/Search/Search";
+import {ReactNode} from "react";
+import {Box} from "@mui/material";
+import HeaderWithBar from "@/components/Header/HeaderWithBar";
+
 
 type Props = {
     children?: ReactNode;
 };
 
-export default function PageLayout({ children }: Props) {
+export default async function PageLayout({children}: Props) {
     return (
         <>
-            <Header />
-            <Box sx={{ height: "calc(100svh - 70px)", overflowY: "auto" }}>
-                <SearchComponent />
+            <HeaderWithBar/>
+            <Box sx={{height: "calc(100svh - 70px)", overflowY: "auto"}}>
                 {children}
             </Box>
         </>

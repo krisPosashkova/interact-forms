@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material/styles";
+import {createTheme} from "@mui/material/styles";
 
 export const theme = createTheme({
     cssVariables: {
@@ -49,7 +49,7 @@ export const theme = createTheme({
                     main: "#474ae4ef",
                     light: "#8F8FFF",
                     dark: "#3739b1ee",
-                    contrastText: "#f5f5f5",
+                    contrastText: "#2e2e2e",
                 },
                 secondary: {
                     main: "#e58be2",
@@ -66,20 +66,21 @@ export const theme = createTheme({
     typography: {
         fontFamily: "var(--font-primary)",
         button: {
-            fontSize: "clamp(0.875rem, 1.5vw + 0.5rem, 1.125rem)",
+            fontSize: "clamp(0.2rem, 1vw + 0.4rem, 1.125rem)",
             fontWeight: 400,
-            lineHeight: 1.2,
+            lineHeight: "normal",
         },
+
         caption: {
-            fontSize: "clamp(0.6rem, 1.5vw + 0.5rem, 0.7rem)",
+            fontSize: "clamp(0.2rem, 1vw + 0.3rem, 0.7rem)",
             fontWeight: 400,
             lineHeight: "normal",
         },
 
         body1: {
-            fontSize: "clamp(0.875rem, 1.5vw + 0.5rem, 1.125rem)",
+            fontSize: "clamp(0.2rem, 1vw + 0.4rem, 1.125rem)",
             fontWeight: 400,
-            lineHeight: 1.3,
+            lineHeight: "normal"
         },
 
         h1: {
@@ -110,13 +111,35 @@ export const theme = createTheme({
 
         h6: {
             fontFamily: "var(--font-secondary)",
-            fontSize: "clamp(1rem, 1.5vw + 0.5rem, 1.5rem)",
+            fontSize: "clamp(0.4rem, 1vw + 0.4rem, 1.5rem)",
             fontWeight: 600,
             lineHeight: 1.3,
             letterSpacing: 1.5,
         },
     },
     components: {
+        MuiSvgIcon: {
+            styleOverrides: {
+                root: {
+                    fontSize: "clamp(0.2rem, 1vw + 0.3rem, 1.125rem)",
+                    height: "clamp(1rem, 1.5vw + 0.3rem, 1.5rem)",
+                    width: "auto",
+                    // width: "clamp(1rem, 2vw + 0.3rem, 2rem)",
+
+                    whiteSpace: "nowrap"
+                }
+            }
+        },
+        MuiChip: {
+            styleOverrides: {
+                root: {
+                    fontSize: "clamp(0.2rem, 1vw + 0.4rem, 1.125rem)",
+                    height: "clamp(1.5rem, 2vw + 0.3rem, 2rem)",
+                    whiteSpace: "nowrap"
+                }
+            }
+
+        },
         MuiSelect: {
             styleOverrides: {
                 root: {
@@ -136,11 +159,25 @@ export const theme = createTheme({
                 },
             },
         },
+        MuiIconButton: {
+            styleOverrides: {
+                root: {
+                    padding: 5,
+                    borderRadius: 8,
+                    boxShadow: "var(--shadows-5)"
+                }
+            }
+        },
+
         MuiButton: {
             styleOverrides: {
                 root: {
                     textTransform: "none",
                     fontWeight: 600,
+                    paddingTop: 5,
+                    paddingBottom: 5,
+                    borderRadius: 8,
+                    lineHeight: "normal"
                 },
                 contained: {
                     // color: "var(--palette-text-primary)",

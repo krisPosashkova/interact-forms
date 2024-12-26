@@ -6,21 +6,23 @@ export const searchStyles = {
     },
 
     button: {
-        border: "1px solid",
-        borderRadius: 3,
         display: "flex",
-        justifyContent: { xs: "center", md: "space-between" },
+        justifyContent: {xs: "center", md: "space-between"},
         alignItems: "center",
-        gap: 2,
-        mt: 3,
+        gap: 1,
+        maxHeight: "36px",
         overflow: "hidden",
-        width: { xs: "100%", md: "fit-content" },
+        width: {xs: "100%", md: "fit-content"},
+    },
+    typography: {
+        mr: "0.5rem",
+        display: {xs: "none", md: "block"},
     },
     caption: {
         ml: 1,
-        p: 1,
+        p: 0.5,
         backgroundColor: "var(--palette-background-paper)",
         borderRadius: 2,
-        display: { xs: "none", md: "block" },
+        display: {xs: "none", md: "block"},
     },
 };

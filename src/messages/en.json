@@ -1,77 +1,104 @@
 {
-    "SignIn": {
-        "title": "Sign In",
-        "description": "Sign in to your account",
-        "prompt": "Don't have an account?",
-        "event": "Sign In",
-        "link": {
-            "text": "Sign Up",
-            "href": "/signup"
-        }
-    },
-    "SignUp": {
-        "title": "Sign Up",
-        "description": "Create your account",
-        "prompt": "Already have an account?",
-        "event": "Sign Up",
-        "link": {
-            "text": "Sign In",
-            "href": "/signin"
-        }
-    },
-    "Homepage": {
-        "title": "Interact Forms",
-        "content": "This application is a universal tool for creating interactive forms, \n surveys and questionnaires. It combines ease of customization with flexibility,\n ensuring a seamless user experience.",
-        "getStarted": "Get started",
-        "templates": "Templates",
-        "viewTemplates": "View templates",
-        "popularTemplates": "Popular templates",
-        "latestTemplates": "Latest templates",
-        "allTemplates": "All templates"
-    },
-    "Meta": {
-        "title": "Interact Forms",
-        "description": "Interact Forms – a versatile tool for creating interactive forms, surveys, and questionnaires. It offers flexibility and ease of customization, ensuring a seamless user experience. Perfect for data collection, process automation, and audience engagement."
-    },
-    "NotFoundPage": {
-        "title": "Not Found Page",
-        "goBackButton": "Go Home"
-    },
-    "locales": {
-        "en": "En",
-        "ru": "Ru"
-    },
-    "AuthForm": {
-        "email": {
-            "label": "Email",
-            "validation": {
-                "required": "Email is a required field",
-                "invalid": "Invalid email address"
-            }
-        },
-        "password": {
-            "label": "Password",
-            "validation": {
-                "required": "Password is a required field",
-                "minLength": "Password must be at least 6 characters"
-            }
-        },
-        "name": {
-            "label": "Name",
-            "validation": {
-                "required": "Name is a required field"
-            }
-        }
-    },
-    "Search": {
-        "title": "Search",
-        "placeholder": "What are you looking for?",
-        "noResult": "No results found"
-    },
-    "Event": {
-        "close": "Close"
-    },
-    "Template": {
-        "author": "Author"
+  "SignIn": {
+    "title": "Sign In",
+    "description": "Sign in to your account",
+    "prompt": "Don't have an account?",
+    "event": "Sign In",
+    "link": {
+      "text": "Sign Up",
+      "href": "/signup"
     }
+  },
+  "SignUp": {
+    "title": "Sign Up",
+    "description": "Create your account",
+    "prompt": "Already have an account?",
+    "event": "Sign Up",
+    "link": {
+      "text": "Sign In",
+      "href": "/signin"
+    }
+  },
+  "Homepage": {
+    "title": "Interact Forms",
+    "content": "This application is a universal tool for creating interactive forms, \n surveys and questionnaires. It combines ease of customization with flexibility,\n ensuring a seamless user experience.",
+    "getStarted": "Get started",
+    "templates": "Templates",
+    "viewTemplates": "View templates",
+    "popularTemplates": "Popular templates",
+    "latestTemplates": "Latest templates",
+    "allTemplates": "All templates"
+  },
+  "Meta": {
+    "title": "Interact Forms",
+    "description": "Interact Forms – a versatile tool for creating interactive forms, surveys, and questionnaires. It offers flexibility and ease of customization, ensuring a seamless user experience. Perfect for data collection, process automation, and audience engagement."
+  },
+  "NotFoundPage": {
+    "title": "Not Found Page",
+    "goBackButton": "Go Home"
+  },
+  "locales": {
+    "en": "En",
+    "ru": "Ru"
+  },
+  "AuthForm": {
+    "email": {
+      "label": "Email",
+      "validation": {
+        "required": "Email is a required field",
+        "invalid": "Invalid email address"
+      }
+    },
+    "password": {
+      "label": "Password",
+      "validation": {
+        "required": "Password is a required field",
+        "minLength": "Password must be at least 6 characters"
+      }
+    },
+    "name": {
+      "label": "Name",
+      "validation": {
+        "required": "Name is a required field"
+      }
+    }
+  },
+  "Search": {
+    "title": "Search",
+    "placeholder": "What are you looking for?",
+    "noResult": "No results found"
+  },
+  "Event": {
+    "close": "Close"
+  },
+  "MenuProfile": {
+    "openMenuProfile": "Open the profile menu:",
+    "profile": "Profile",
+    "logout": "Log out"
+  },
+  "Template": {
+    "author": "Author"
+  },
+  "Errors": {
+    "invalidEmailOrPassword": "Invalid email or password",
+    "allFieldsRequired": "All fields are required",
+    "userAlreadyExists": "A user with this email already exists",
+    "failedToCreateUser": "Failed to create user. Please try again.",
+    "registrationError": "An error occurred during registration",
+    "authenticationRequired": "Authentication is required",
+    "authorizationError": "Access denied",
+    "databaseConflict": "Conflict with existing data",
+    "databaseRecordNotFound": "Record not found",
+    "foreignKeyConstraintViolation": "Foreign key constraint violation",
+    "validationError": "Validation error",
+    "unknownError": "An unknown error occurred",
+    "duplicateEntry": "A record with such data already exists",
+    "conflictUpdatingData": "Conflict when changing related data",
+    "databaseError": "Database error",
+    "databaseUnknownError": "Unknown database error"
+  },
+  "Success": {
+    "registrationSuccessful": "Registration successful",
+    "loginSuccessful": "Login was completed successfully"
+  }
 }

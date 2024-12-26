@@ -2,36 +2,41 @@
 
 import React from "react";
 import DynamicForm from "../index";
-import { useAuthFormFields } from "./useAuthFormFields";
+import {useAuthFormFields} from "./useAuthFormFields";
+import {loginWithCreds} from "@/app/actions/auth";
 
-import { FieldValues } from "react-hook-form";
-import { FormContent } from "@/types/components/form.types";
+import {FieldValues} from "react-hook-form";
+import {FormContent} from "@/types/components/form.types";
+import {useRouter} from "@/i18n/routing";
 
-const handleLogin = async (
-    data: FieldValues
-): Promise<{ success: boolean; message: string }> => {
-    console.log("Login", data);
-    return { success: true, message: "User login successfully" };
-};
+const FormSignIn = ({t}: { t: FormContent }) => {
+    const {signInFields} = useAuthFormFields();
+    const router = useRouter();
+    const handleLogin = async (data: FieldValues) => {
+        const login = await loginWithCreds(data);
 
-interface FormSignInProps {
-    t: FormContent;
-}
+        if (login.success) {
+            console.log(login, "login success");
+            router.push("/")
+            return {success: true, message: login.message};
+        } else {
+            return {success: false, message: login.error};
+        }
+    };
 
-const FormSignIn = ({ t }: FormSignInProps) => {
-    const { signInFields } = useAuthFormFields();
-
-    const { title, description } = t;
+    const {title, description} = t;
     const content = {
         title,
         description,
     };
+
     return (
         <DynamicForm
             content={content}
             fields={signInFields}
             onSubmit={handleLogin}
         />
+
     );
 };
 

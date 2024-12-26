@@ -1,36 +1,47 @@
 "use client";
 
 import React from "react";
-import { useForm, FieldValues } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Typography, Button } from "@mui/material";
-import { CusomForm } from "@/styles/components";
-import { FormProps } from "@/types/components/form.types";
+import {useForm, FieldValues} from "react-hook-form";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {Typography, Button} from "@mui/material";
+import {CusomForm} from "@/styles/components";
+import {FormProps} from "@/types/components/form.types";
 import FormField from "./FormField";
-import { createValidationSchema } from "@/utils/createValidationSchema";
+import {createValidationSchema} from "@/utils/createValidationSchema";
+import {useSnackbarState} from "@/hooks/useSnackbarState";
+import CustomSnackbars from "@/components/UI/CustomSnackbar";
 
 const DynamicForm = <T extends FieldValues>({
-    content,
-    fields,
-    onSubmit,
-}: FormProps<T>) => {
+                                                content,
+                                                fields,
+                                                onSubmit,
+                                            }: FormProps<T>) => {
     const schema = createValidationSchema(fields);
 
     const {
         register,
         handleSubmit,
-        formState: { errors, isSubmitting },
+        formState: {errors, isSubmitting},
     } = useForm<T>({
         resolver: zodResolver(schema),
         mode: "onTouched",
     });
 
+    const {snackbarState, handleSnackbar} = useSnackbarState();
     const handleFormSubmit = async (data: T) => {
         const response = await onSubmit(data);
-        console.log(response);
+
+        if (response.success) {
+            handleSnackbar(
+                "success",
+                response.message
+            );
+        } else {
+            handleSnackbar("error", response.message);
+        }
     };
 
-    const { title, description } = content;
+    const {title, description} = content;
 
     return (
         <>
@@ -64,6 +75,7 @@ const DynamicForm = <T extends FieldValues>({
                     {title}
                 </Button>
             </CusomForm>
+            <CustomSnackbars {...snackbarState} />
         </>
     );
 };

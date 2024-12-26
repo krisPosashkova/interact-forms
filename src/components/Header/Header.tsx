@@ -1,82 +1,34 @@
-"use client";
-import React, { useMemo, memo } from "react";
-import { Link } from "@/i18n/routing";
+import React, {ReactNode} from "react";
+import {Link} from "@/i18n/routing";
+import {Typography, Container, Box} from "@mui/material";
+import {DynamicForm} from "@mui/icons-material";
+import {auth} from "@/lib/auth";
+import {headerStyles} from "@/components/Header/styled/header.styled";
 
-import { Typography, Container, IconButton, List } from "@mui/material";
-import { DynamicForm, Menu } from "@mui/icons-material";
-import { CustomHeader } from "./Header.styled";
+interface HeaderBaseProps {
+    children?: ReactNode;
+}
 
-import CustomMenu from "@/components/CustomMenu/Menu";
-import ListItems from "@/components/Common/ListItems";
-import ModeSwitcher from "@/components/UI/ModeSwitcher";
-import LocaleSwitcher from "@/components/UI/LocaleSwitcher";
+const HeaderBase: React.FC<HeaderBaseProps> = async ({children}) => {
+    const session = await auth();
+    console.log(session, 'ses header')
 
-import { useMenu } from "@/hooks/useMenu";
-
-const Header = () => {
-    const { openMenu, toggleMenu } = useMenu();
-    const menuItems = useMemo(
-        () => [
-            <>
-                <ModeSwitcher key="modeSwitcher" />
-                <LocaleSwitcher key="localeSwitcher" />
-            </>,
-        ],
-        []
-    );
-    const headerItems = useMemo(
-        () => [
-            <ModeSwitcher key="modeSwitcher" />,
-            <LocaleSwitcher key="localeSwitcher" />,
-        ],
-        []
-    );
-    const headerMobileItems = useMemo(
-        () => [
-            <IconButton className="p-0" key="menuButton" onClick={toggleMenu}>
-                <Menu />
-            </IconButton>,
-        ],
-        [toggleMenu]
-    );
     return (
-        <CustomHeader>
+        <Box sx={headerStyles.root} component={"header"}>
             <Container maxWidth="xl">
-                <Typography
-                    variant="h6"
-                    component="div"
-                    className="flex-align-center"
-                    sx={{
-                        padding: "1rem 0",
-
-                        justifyContent: "space-between",
-                        height: "70px",
-                    }}>
-                    <Link href={"/"} className="logo flex-align-center">
-                        <DynamicForm />
-                        <span>I-Forms</span>
+                <Box
+                    sx={headerStyles.box}>
+                    <Link href={"/"}>
+                        <Typography component={"div"} sx={headerStyles.logoLink}>
+                            <DynamicForm/>
+                            <Typography variant={"h6"}>I-Forms</Typography>
+                        </Typography>
                     </Link>
-
-                    <List className="flex-align-center">
-                        <ListItems
-                            className="is-desktop p-0"
-                            nameComponent="li"
-                            items={headerItems}
-                        />
-
-                        <ListItems
-                            nameComponent="li"
-                            className="is-mobile p-0"
-                            items={headerMobileItems}
-                        />
-                    </List>
-                </Typography>
+                    {children}
+                </Box>
             </Container>
-            <CustomMenu openMenu={openMenu} toggleMenu={toggleMenu}>
-                <ListItems nameComponent="li" items={menuItems} />
-            </CustomMenu>
-        </CustomHeader>
+        </Box>
     );
 };
 
-export default memo(Header);
+export default HeaderBase;
