@@ -1,3 +1,4 @@
+import React from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { SelectChangeEvent } from "@mui/material";
@@ -13,10 +14,20 @@ const useLocaleSwitcher = () => {
         router.replace({ pathname }, { locale: nextLocale });
     };
 
+    const handleLocaleToggle = (
+        event: React.MouseEvent<HTMLElement>,
+        newLocale: string
+    ) => {
+        if (newLocale) {
+            router.replace({ pathname }, { locale: newLocale });
+        }
+    };
+
     return {
         t,
         locale,
         handleLocaleChange,
+        handleLocaleToggle
     };
 };
 
