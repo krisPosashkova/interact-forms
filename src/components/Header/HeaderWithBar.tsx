@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "@/components/Header/Header";
-import {auth} from "@/lib/auth";
+import { auth } from "@/lib/auth";
 import HeaderBar from "@/components/Header/HeaderBar";
 
 const HeaderWithBar = async () => {
@@ -8,7 +8,7 @@ const HeaderWithBar = async () => {
 
     return (
         <Header>
-            <HeaderBar session={session}/>
+            <HeaderBar session={session} />
         </Header>
     );
 };

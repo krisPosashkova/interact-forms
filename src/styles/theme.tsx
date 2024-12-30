@@ -118,6 +118,14 @@ export const theme = createTheme({
         }
     },
     components: {
+        MuiAppBar: {
+            styleOverrides: {
+                root: {
+                    "--AppBar-background": "var(--palette-background-paper)",
+                    "--AppBar-color": "var(--palette-text-secondary)"
+                }
+            }
+        },
         MuiSvgIcon: {
             styleOverrides: {
                 root: {

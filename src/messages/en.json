@@ -74,7 +74,18 @@
   "MenuProfile": {
     "openMenuProfile": "Open the profile menu:",
     "profile": "Profile",
+    "adminDashboard": "Admin Dashboard",
     "logout": "Log out"
+  },
+  "Dashboard": {
+    "users": "Users",
+    "logout": "Log out",
+    "name": "Name",
+    "email": "Email",
+    "role": "Role",
+    "adminDashboard": "Admin Dashboard",
+    "templates": "Templates",
+    "profile": "Profile"
   },
   "Template": {
     "author": "Author"

@@ -75,7 +75,18 @@
   "MenuProfile": {
     "openMenuProfile": "Открыть меню профиля:",
     "profile": "Профиль",
+    "adminDashboard": "Панель администратора",
     "logout": "Выйти"
+  },
+  "Dashboard": {
+    "users": "Пользователи",
+    "logout": "Выйти",
+    "name": "Имя",
+    "email": "Электронная почта",
+    "role": "Роль",
+    "templates": "Шаблоны",
+    "adminDashboard": "Панель администратора",
+    "profile": "Профиль"
   },
   "Template": {
     "author": "Автор"

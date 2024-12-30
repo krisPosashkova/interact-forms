@@ -1,5 +1,5 @@
-import {ReactNode} from "react";
-import {Box} from "@mui/material";
+import { ReactNode } from "react";
+import { Box, Toolbar } from "@mui/material";
 import HeaderWithBar from "@/components/Header/HeaderWithBar";
 
 
@@ -7,13 +7,12 @@ type Props = {
     children?: ReactNode;
 };
 
-export default async function PageLayout({children}: Props) {
+export default async function PageLayout({ children }: Props) {
     return (
-        <>
-            <HeaderWithBar/>
-            <Box sx={{height: "calc(100svh - 70px)", overflowY: "auto"}}>
-                {children}
-            </Box>
-        </>
+        <Box sx={{ height: "100svh", overflowY: "auto" }}>
+            <HeaderWithBar />
+            <Toolbar />
+            {children}
+        </Box>
     );
 }

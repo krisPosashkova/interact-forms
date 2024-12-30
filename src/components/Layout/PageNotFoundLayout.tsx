@@ -1,18 +1,14 @@
-import {ReactNode} from "react";
-import {Box} from "@mui/material";
-import HeaderWithBar from "@/components/Header/HeaderWithBar";
+import { ReactNode } from "react";
+import PageLayout from "@/components/Layout/PageLayout";
 
 type Props = {
     children?: ReactNode;
 };
 
-export default function PageLayout({children}: Props) {
+export default function PageNotFoundLayout({ children }: Props) {
     return (
-        <>
-            <HeaderWithBar/>
-            <Box sx={{height: "calc(100svh - 70px)", overflowY: "auto"}}>
-                {children}
-            </Box>
-        </>
+        <PageLayout>
+            {children}
+        </PageLayout>
     );
 }

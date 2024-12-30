@@ -1,18 +1,11 @@
 export const headerStyles = {
     root: {
-        position: "sticky",
-        top: 0,
-        left: 0,
-        width: "100%",
+        zIndex: "calc(var(--zIndex-drawer) + 1)"
     },
 
     box: {
-        padding: "1rem 0",
         justifyContent: "space-between",
-        height: "70px",
-        display: "flex",
-        alignItems: "center",
-        gap: 2,
+        alignItems: "center"
     },
 
     logo: {
@@ -29,4 +22,4 @@ export const headerStyles = {
             opacity: "var(--custom-opacity)"
         }
     }
-}
+};

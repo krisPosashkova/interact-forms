@@ -2,7 +2,7 @@ export interface ISuccessResponse<T = unknown> {
     data: T;
     success: true;
     message: string;
-    redirect?: boolean
+    redirect?: boolean;
 }
 
 export interface IErrorResponse {
@@ -21,7 +21,7 @@ export interface IUser {
     id: number | string;
     username: string;
     email: string;
-    role: string;
-    createdAt: string | Date;
-    updatedAt: string | Date;
+    role: string | null;
+    created_at: string | Date | null;
+    updated_at: string | Date | null;
 }
