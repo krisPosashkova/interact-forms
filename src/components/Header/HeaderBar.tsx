@@ -10,7 +10,7 @@ import { Login, Settings } from "@mui/icons-material";
 
 import ProfileMenu from "@/components/UI/ProfileMenu/ProfileMenu";
 import ModeSwitcher from "@/components/UI/Mode/ModeSwitcher";
-import SearchComponent from "@/components/UI/Search/Search";
+// import SearchComponent from "@/components/UI/Search/Search";
 import { headerBarStyles } from "@/components/Header/styled/headerBar.styled";
 
 import { useMenu } from "@/hooks/useMenu";
@@ -26,9 +26,10 @@ const HeaderBar = ({ session }: { session: Session | null; }) => {
                 <ListItem sx={[headerBarStyles.item, { display: { xs: "none", md: "flex" } }]}>
                     <ModeSwitcher />
                 </ListItem>
-                <ListItem sx={headerBarStyles.item}>
-                    <SearchComponent />
-                </ListItem>
+                {/*to do: temporarily commented out until the search logic is implemented*/}
+                {/*<ListItem sx={headerBarStyles.item}>*/}
+                {/*    <SearchComponent />*/}
+                {/*</ListItem>*/}
 
                 <ListItem sx={[headerBarStyles.item, { display: { xs: "flex", md: "none" } }]}>
                     <IconButton sx={{
