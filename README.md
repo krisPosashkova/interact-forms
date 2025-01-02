@@ -1,28 +1,78 @@
 # Interact forms
 
-**Interact Forms** – a versatile tool for creating interactive forms, surveys, and questionnaires. It offers flexibility and ease of customization, ensuring a seamless user experience. Perfect for data collection, process automation, and audience engagement.
+**Interact Forms** – a versatile tool for creating interactive forms, surveys, and questionnaires. It offers flexibility
+and ease of customization, ensuring a seamless user experience. Perfect for data collection, process automation, and
+audience engagement.
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-## Learn More
+### Использованные технологии:
 
-To learn more about Next.js, take a look at the following resources:
+- Next.js
+- React
+- React Hook Form
+- Zod
+- Prisma
+- PostgreSQL
+- Next-auth
+- Next-intl
+- Deployed on Vercel
 
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Реализовано:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Аутентификация:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Регистрация и авторизация пользователей с использованием next-auth-5.
+
+2. Интерфейс:
+
+- Поддержка двух языков (английский и локальный).
+- Поддержка двух тем оформления (светлая/темная).
+
+3. Кабинет администратора:
+
+Администраторы могут:
+
+- Управлять пользователями (просмотр, удаление, добавление/удаление прав администратора).
+- Видеть все страницы и шаблоны, как их авторы.
+- Лишать себя прав администратора.
+
+4. Пользователи могут просматривать свои шаблоны в личном кабинете(удалять/ переходить на страницу редактирования,
+   сортировать)
+5. Главная страница:
+
+- Облако тегов (ссылка на список шаблонов с этим тегом).
+- Галерея последних шаблонов с названием, описанием, изображением и автором.
+
+### В процессе реализации:
+
+1. Главная страница:
+
+- Топ-5 популярных шаблонов (по числу заполненных форм).
+
+2. Личный кабинет пользователя:
+
+- Список заполненных форм.
+
+3. Функционал:
+
+- Просмотр заполненных форм.
+- Полнотекстовый поиск по шаблонам.
+- Добавление комментариев и лайков:
+
+4. Анализ данных:
+
+- На странице шаблона:
+- Результаты всех заполненных форм.
+- Агрегированные данные (например, средние значения, наиболее частые ответы).
+
+5. Дополнительные требования (опционально):
+
+- Вопросы типа "один из списка" с возможностью указать варианты (в процессе).
+- Чекбокс "Отправить копию ответов на email" в форме (не реализовано).
+- Вход с помощью соц сетей
+
