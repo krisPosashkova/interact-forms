@@ -2,8 +2,8 @@ import PageLayout from "@/components/Layout/PageLayout";
 import Banner from "@/components/Banner/Banner";
 import { Container } from "@mui/material";
 import TemplatesList from "@/components/Templates/List";
-import {ITemplate} from "@/types/templates/template.types";
-import {mokTemplates} from "@/mocks/mockTemplates";
+import { ITemplateMock } from "@/types/api/template.types";
+import { mokTemplates } from "@/mocks/mockTemplates";
 
 type Props = {
     params: Promise<{ id: string }>;
@@ -11,11 +11,11 @@ type Props = {
 export default async function TagsPage({ params }: Props) {
 
     const { id } = await params;
-    const templates: { name: string; data: ITemplate[] }[] = [
+    const templates: { name: string; data: ITemplateMock[] }[] = [
         {
             name: `${id}`,
-            data: mokTemplates,
-        },
+            data: mokTemplates
+        }
     ];
     return (
         <PageLayout>

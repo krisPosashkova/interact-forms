@@ -1,19 +1,19 @@
-import NextAuth, {User} from "next-auth";
-import {PrismaAdapter} from "@auth/prisma-adapter";
-import type {Provider} from "next-auth/providers";
-import Credentials from "next-auth/providers/credentials"
+import NextAuth, { User } from "next-auth";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import type { Provider } from "next-auth/providers";
+import Credentials from "next-auth/providers/credentials";
 import prisma from "@/lib/db";
-import {compare} from "bcryptjs";
+import { compare } from "bcryptjs";
 
 const providers: Provider[] = [
     Credentials({
         name: "Credentials",
         credentials: {
-            email: {label: "Email", type: "email"},
-            password: {label: "Password", type: "password"},
+            email: { label: "Email", type: "email" },
+            password: { label: "Password", type: "password" }
         },
         async authorize(credentials): Promise<User | null> {
-            console.log(credentials, 'sign in ')
+            console.log(credentials, "sign in ");
 
             if (!credentials?.email || !credentials?.password) {
                 return null;
@@ -23,19 +23,19 @@ const providers: Provider[] = [
             const password = credentials.password as string;
 
 
-            const user = await prisma.users.findUnique({
+            const user = await prisma.user.findUnique({
                 where: {
-                    email,
-                },
+                    email
+                }
             });
 
-            if (!user || !user.password_hash) {
+            if (!user || !user.passwordHash) {
                 return null;
             }
 
             const isPasswordValid = await compare(
                 password,
-                user.password_hash
+                user.passwordHash
             );
 
             if (!isPasswordValid) {
@@ -46,21 +46,21 @@ const providers: Provider[] = [
                 id: user.id.toString(),
                 email: user.email,
                 name: user.username,
-                role: user.role,
+                role: user.role
             };
-        },
-    }),
-]
+        }
+    })
+];
 
-export const {handlers, auth, signIn, signOut} = NextAuth({
+export const { handlers, auth, signIn, signOut } = NextAuth({
     adapter: PrismaAdapter(prisma),
     secret: process.env.AUTH_SECRET,
-    session: {strategy: "jwt"},
+    session: { strategy: "jwt" },
     pages: {
-        signIn: "/signin",
+        signIn: "/signin"
     },
     callbacks: {
-        jwt({token, user}) {
+        jwt({ token, user }) {
             if (user) {
                 token.id = user.id;
                 token.email = user.email;
@@ -70,7 +70,7 @@ export const {handlers, auth, signIn, signOut} = NextAuth({
             return token;
         },
 
-        session({session, token}) {
+        session({ session, token }) {
             if (session.user) {
                 session.user.id = token.id as string;
                 session.user.email = token.email as string;
@@ -78,7 +78,7 @@ export const {handlers, auth, signIn, signOut} = NextAuth({
                 session.user.username = token.username as string;
             }
             return session;
-        },
+        }
     },
-    providers: providers,
-})
+    providers: providers
+});

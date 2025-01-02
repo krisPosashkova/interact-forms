@@ -1,4 +1,4 @@
-import { IErrorResponse } from "@/types/apiResponse.types";
+import { IErrorResponse } from "@/types/api/apiResponse.types";
 import { handlePrismaError } from "@/utils/errors/handlers/prisma";
 import { handleAuthError } from "@/utils/errors/handlers/auth";
 import { AppError } from "@/utils/errors/base";

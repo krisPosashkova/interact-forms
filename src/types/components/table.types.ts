@@ -11,6 +11,7 @@ export interface TableHeadProps<T> {
     numSelected: number;
     rowCount: number;
     onRequestSort: (event: React.MouseEvent<unknown>, property: keyof T) => void;
+    enableCheckbox: boolean;
 }
 
 export type TableProps<T> = {
@@ -21,7 +22,8 @@ export type TableProps<T> = {
     conditionalActions?: Action[];
     columns: Columns<T>;
     error: string | null;
-    loadingUsers: Record<number, boolean>;
+    loadingRows: Record<number, boolean>;
+    enableCheckbox: boolean;
 } & Omit<UseTableReturn<T>, "setRows" | "setSelected" | "rows" | "setLoading">
 
 export type Action = {
@@ -30,14 +32,14 @@ export type Action = {
     tooltip?: string;
     color?: "inherit" | "primary" | "secondary" | "default" | "error" | "info" | "success" | "warning";
 };
-
-
-export interface HeadCell<T> {
-    disablePadding: boolean;
-    id: keyof T;
-    label: string;
+export type HeadCell<T> = {
+    id: keyof T | string;
     numeric: boolean;
-}
+    disablePadding: boolean;
+    label: string | React.ReactNode;
+    sortable?: boolean;
+    align?: "left" | "right" | "center";
+};
 
 export interface TableToolbarProps {
     numSelected: number;

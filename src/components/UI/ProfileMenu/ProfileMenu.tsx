@@ -21,7 +21,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ session, onSignOut }) => {
         admin: [
             {
                 name: t("adminDashboard"),
-                href: "/admin/dashboard"
+                href: "/admin/dashboard/users"
             }
         ],
         user: [
@@ -97,7 +97,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ session, onSignOut }) => {
                         </Typography>
                     </MenuItem>
                 ))}
-      
+
                 <MenuItem>
                     <Typography sx={{ display: "flex", alignItems: "center" }} component={"button"}
                                 onClick={onSignOut}>

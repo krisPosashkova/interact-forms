@@ -1,33 +1,34 @@
 import Banner from "@/components/Banner/Banner";
 import PageLayout from "@/components/Layout/PageLayout";
 import TemplatesList from "@/components/Templates/List";
-import {useTranslations} from "next-intl";
+import { useTranslations } from "next-intl";
 import { Container } from "@mui/material";
-import {mokTemplates} from "@/mocks/mockTemplates";
-import {ITemplate} from "@/types/templates/template.types";
+import { mokTemplates } from "@/mocks/mockTemplates";
+import { ITemplateMock } from "@/types/api/template.types";
+
 export default function Home() {
     const t = useTranslations("Homepage");
 
-    const templates: { name: string; data: ITemplate[] }[] = [
+    const templates: { name: string; data: ITemplateMock[] }[] = [
         {
             name: t("popularTemplates"),
-            data: mokTemplates,
+            data: mokTemplates
         },
         {
             name: t("latestTemplates"),
-            data: mokTemplates,
+            data: mokTemplates
         },
         {
             name: t("allTemplates"),
-            data: mokTemplates,
-        },
+            data: mokTemplates
+        }
     ];
 
     return (
         <PageLayout>
             <Container maxWidth="xl">
                 <Banner />
-                <TemplatesList templates={templates}/>
+                <TemplatesList templates={templates} />
             </Container>
         </PageLayout>
     );

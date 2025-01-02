@@ -74,7 +74,8 @@
     "selected": "Selected",
     "proceed": "Proceed",
     "delete": "Delete",
-    "selectRole": "Select a role"
+    "selectRole": "Select a role",
+    "editTemplate": "Edit the template"
   },
   "Dialog": {
     "warning": "Warning",
@@ -106,6 +107,16 @@
     "updatedAt": "Update At",
     "role": "Role"
   },
+  "TemplatesTable": {
+    "title": "Templates",
+    "titleTemplate": "Title",
+    "description": "Description",
+    "updatedAt": "Update At",
+    "createdAt": "Create At",
+    "author": "Author",
+    "tags": "Tags",
+    "emptyTable": "The template table is empty..."
+  },
   "Errors": {
     "invalidEmailOrPassword": "Invalid email or password",
     "allFieldsRequired": "All fields are required",
@@ -129,8 +140,8 @@
     "registrationSuccessful": "Registration successful",
     "loginSuccessful": "Login was completed successfully",
     "updateRole": "User's role has been updated to {newRole}",
-    "deleteUser": "Deleted successfully.",
+    "delete": "Deleted successfully.",
     "getUsers": "Successfully received users",
-    "delete": "Удалить"
+    "getTemplates": "Successfully received templates"
   }
 }

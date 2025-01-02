@@ -1,14 +1,14 @@
-import {Prisma} from "@prisma/client";
-import {IErrorResponse} from "@/types/apiResponse.types";
-import {DatabaseError} from "@/utils/errors/database";
-import {getTranslationsFor} from "@/utils/getTranslationsFor";
-import {ERROR_CODES} from "@/utils/errors/constants";
+import { Prisma } from "@prisma/client";
+import { IErrorResponse } from "@/types/api/apiResponse.types";
+import { DatabaseError } from "@/utils/errors/database";
+import { getTranslationsFor } from "@/utils/getTranslationsFor";
+import { ERROR_CODES } from "@/utils/errors/constants";
 
 interface PrismaErrorMap {
     [key: string]: (errors: Prisma.PrismaClientKnownRequestError) => IErrorResponse;
 }
 
-const t = await getTranslationsFor('Errors');
+const t = await getTranslationsFor("Errors");
 
 const prismaErrorMap: PrismaErrorMap = {
     P2002: (error) => ({
@@ -50,7 +50,7 @@ export function handlePrismaError(error: unknown, path?: string): IErrorResponse
         const handler = prismaErrorMap[error.code];
         if (handler) {
             const response = handler(error);
-            return {...response, path};
+            return { ...response, path };
         }
         return {
             success: false,
@@ -68,7 +68,7 @@ export function handlePrismaError(error: unknown, path?: string): IErrorResponse
             success: false,
             error: t.errors("validationError"),
             statusCode: 400,
-            code: 'VALIDATION_ERROR',
+            code: "VALIDATION_ERROR",
             details: error.message,
             timestamp: new Date().toISOString(),
             path
@@ -78,6 +78,6 @@ export function handlePrismaError(error: unknown, path?: string): IErrorResponse
     throw new DatabaseError(
         t.errors("databaseUnknownError"),
         ERROR_CODES.DB.UNKNOWN,
-        error,
+        error
     );
 }

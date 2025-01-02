@@ -1,13 +1,13 @@
-import {AuthError} from "next-auth";
-import {IErrorResponse} from "@/types/apiResponse.types";
-import {ERROR_CODES} from "@/utils/errors/constants";
-import {getTranslationsFor} from "@/utils/getTranslationsFor";
+import { AuthError } from "next-auth";
+import { IErrorResponse } from "@/types/api/apiResponse.types";
+import { ERROR_CODES } from "@/utils/errors/constants";
+import { getTranslationsFor } from "@/utils/getTranslationsFor";
 
 interface AuthErrorMap {
     [key: string]: (error: AuthError, path?: string) => IErrorResponse;
 }
 
-const t = await getTranslationsFor('Errors');
+const t = await getTranslationsFor("Errors");
 
 const authErrorMap: AuthErrorMap = {
     CredentialsSignin: (_, path) => ({

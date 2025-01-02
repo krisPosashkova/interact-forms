@@ -78,7 +78,8 @@
     "selected": "Выбранно",
     "proceed": "Продолжить",
     "delete": "Удалить",
-    "selectRole": "Выбрать роль"
+    "selectRole": "Выбрать роль",
+    "editTemplate": "Редактировать шаблон"
   },
   "MenuProfile": {
     "openMenuProfile": "Открыть меню профиля:",
@@ -106,6 +107,16 @@
     "updatedAt": "Последнее обновление",
     "role": "Роль"
   },
+  "TemplatesTable": {
+    "title": "Шаблоны",
+    "titleTemplate": "Заголовок",
+    "description": "Описание",
+    "updatedAt": "Последнее обновление",
+    "createdAt": "Дата создания",
+    "author": "Автор",
+    "tags": "Теги",
+    "emptyTable": "Таблица шаблонов пустая..."
+  },
   "Errors": {
     "invalidEmailOrPassword": "Неверный email или пароль",
     "allFieldsRequired": "Все поля обязательны для заполнения",
@@ -129,7 +140,8 @@
     "registrationSuccessful": "Регистрация успешна",
     "loginSuccessful": "Вход в систему выполнен успешно",
     "updateRole": "Роль пользователя была обновлена на {newRole}",
-    "deleteUser": "Удалено успешно.",
-    "getUsers": "Успешно получены пользователи"
+    "delete": "Удалено успешно.",
+    "getUsers": "Успешно получены пользователи",
+    "getTemplates": "Успешно получены шаблоны"
   }
 }
