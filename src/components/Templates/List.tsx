@@ -1,18 +1,20 @@
 import TagsList from "@/components/UI/Tags/TagsList";
 import Gallery from "@/components/Gallery/GalleryTemplates";
 
-import { mockTags } from "@/mocks/mockTags";
-import { ITemplateMock } from "@/types/api/template.types";
+import { ITemplate, ITemplateWithoutTags } from "@/types/api/template.types";
+import { ITag } from "@/types/api/tag.types";
 
 interface TemplatesListProps {
-    templates: { name: string; data: ITemplateMock[] }[];
+    templates: { name: string; data: ITemplate[] | ITemplateWithoutTags[] | null }[];
+    tags: ITag[] | null;
 }
 
-const TemplatesList = ({ templates }: TemplatesListProps) => {
+const TemplatesList = ({ templates, tags }: TemplatesListProps) => {
 
     return (
         <>
-            <TagsList tags={mockTags} />
+            {tags && (<TagsList tags={tags} />)}
+
             {templates.map((item, index) => (
                 <Gallery
                     key={index}

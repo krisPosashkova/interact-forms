@@ -6,7 +6,8 @@ import { type ApiResponse } from "@/types/api/apiResponse.types";
 import { Session } from "next-auth";
 import { getTranslations } from "next-intl/server";
 import { checkAdminRole, checkAuthorRole } from "@/app/actions/auth";
-import { ITemplate } from "@/types/api/template.types";
+import { ITemplate, ITemplateWithoutTags } from "@/types/api/template.types";
+import { ITag } from "@/types/api/tag.types";
 import { AuthorizationError } from "@/utils/errors/auth";
 import { ERROR_CODES } from "@/utils/errors/constants";
 
@@ -112,3 +113,94 @@ export async function deleteTemplates(ids: number[] | number, session: Session |
         return handleError(error);
     }
 }
+
+export async function getTemplatesForUserOrAdmin(session: Session | null): Promise<ApiResponse<ITemplate[] | null>> {
+    try {
+
+        const isAdmin = session?.user?.role === "admin";
+        const t = await getTranslations("Success");
+
+        const templates: ITemplate[] = await prisma.template.findMany({
+            where: isAdmin
+                ? {}
+                : {
+                    isPublic: true
+                },
+            include: {
+                templateTags: {
+                    include: {
+                        tag: true
+                    }
+                },
+                user: true
+            }
+        });
+
+        return {
+            success: true,
+            data: templates,
+            message: t("getTemplates")
+        };
+    } catch (error) {
+        return handleError(error);
+    }
+}
+
+export async function getTemplatesByTagId(
+    tagId: number,
+    session: Session | null
+): Promise<ApiResponse<{ tag: ITag | null; templates: ITemplateWithoutTags[] | ITemplate[] | null } | null>> {
+    try {
+        const isAdmin = session?.user.role === "admin"; // Проверяем роль пользователя
+        const t = await getTranslations("Success"); // Получаем перевод для сообщений
+
+        // Находим тег по ID и включаем шаблоны, связанные с этим тегом
+        const tagWithTemplates = await prisma.tag.findUnique({
+            where: { id: tagId },
+            include: {
+                templateTags: {
+                    include: {
+                        template: {
+                            include: {
+                                user: true
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        if (!tagWithTemplates) {
+            return {
+                success: true,
+                data: null,
+                message: t("getTemplates")
+            };
+        }
+
+        const tag: ITag = {
+            id: tagWithTemplates.id,
+            name: tagWithTemplates.name
+        };
+
+        const filteredTemplates: ITemplateWithoutTags[] = tagWithTemplates.templateTags
+            .map((templateTag) => templateTag.template) // Извлекаем шаблоны из templateTags
+            .filter((template) => isAdmin || template.isPublic); // Фильтруем шаблоны для не-админов (по публичности)
+
+        const result = {
+            tag,
+            templates: filteredTemplates
+        };
+
+
+        return {
+            success: true,
+            data: result,
+            message: t("getTemplates")
+        };
+    } catch (error) {
+        return handleError(error); // Обработка ошибок
+    }
+}
+
+

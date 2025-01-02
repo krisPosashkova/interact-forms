@@ -143,6 +143,7 @@
     "updateRole": "User's role has been updated to {newRole}",
     "delete": "Deleted successfully.",
     "getUsers": "Successfully received users",
-    "getTemplates": "Successfully received templates"
+    "getTemplates": "Successfully received templates",
+    "getTags": "Successfully received tags"
   }
 }

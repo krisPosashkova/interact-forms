@@ -1,5 +1,5 @@
 import { Card, CardContent, Typography, CardMedia, Box } from "@mui/material";
-import { ITemplateMock } from "@/types/api/template.types";
+import { ITemplate, ITemplateWithoutTags } from "@/types/api/template.types";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { cardTemplateStyles } from "./styled/cardTemplate.styled";
@@ -8,10 +8,11 @@ const TemplateCard = ({
                           id,
                           title,
                           description,
-                          imageUrl,
-                          authorName
-                      }: ITemplateMock) => {
+                          user
+                      }: ITemplate | ITemplateWithoutTags) => {
     const t = useTranslations("Template");
+    const imageUrl = "/card.webp";
+    const authorName = user.username;
     return (
         <Link href={`/template/${id}`}>
             <Card sx={cardTemplateStyles.root}>
