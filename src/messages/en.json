@@ -69,7 +69,14 @@
     "noResult": "No results found"
   },
   "Event": {
-    "close": "Close"
+    "close": "Close",
+    "signin": "Sign in",
+    "selected": "Selected",
+    "proceed": "Proceed"
+  },
+  "Dialog": {
+    "warning": "Warning",
+    "yourselfActionContent": "You have selected yourself in this action. Are you sure you want to proceed?"
   },
   "MenuProfile": {
     "openMenuProfile": "Open the profile menu:",
@@ -90,6 +97,13 @@
   "Template": {
     "author": "Author"
   },
+  "UsersTable": {
+    "title": "Users",
+    "username": "Username",
+    "email": "Email",
+    "updatedAt": "Update At",
+    "role": "Role"
+  },
   "Errors": {
     "invalidEmailOrPassword": "Invalid email or password",
     "allFieldsRequired": "All fields are required",
@@ -106,10 +120,14 @@
     "duplicateEntry": "A record with such data already exists",
     "conflictUpdatingData": "Conflict when changing related data",
     "databaseError": "Database error",
-    "databaseUnknownError": "Unknown database error"
+    "databaseUnknownError": "Unknown database error",
+    "usersNotFound": "Пользователи не найдены"
   },
   "Success": {
     "registrationSuccessful": "Registration successful",
-    "loginSuccessful": "Login was completed successfully"
+    "loginSuccessful": "Login was completed successfully",
+    "updateRole": "User's role has been updated to {newRole}",
+    "deleteUser": "Deleted successfully.",
+    "getUsers": "Successfully received users"
   }
 }

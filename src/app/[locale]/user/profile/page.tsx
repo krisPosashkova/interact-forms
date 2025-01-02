@@ -1,26 +1,16 @@
-import PageLayout from "@/components/Layout/PageLayout";
-
-import { Box, Container, Typography } from "@mui/material";
+"use server";
 import { auth } from "@/lib/auth";
 
-export default async function UserProfilePage() {
-    const session = await auth();
-    console.log(session, "session user page");
+import { Session } from "next-auth";
+import UserLayout from "@/components/Layout/UserLayout";
+
+
+export default async function AdminDashboardPage() {
+    const session: Session | null = await auth();
 
     return (
-        <PageLayout>
-            <Container maxWidth="xl">
+        <UserLayout session={session}>
 
-                {session &&
-                  <Box>
-                    <Typography variant={"h6"} component={"h1"}>User Profile</Typography>
-                    <Typography>Name: {session.user.name}</Typography>
-                    <Typography>Email: {session.user.email}</Typography>
-                    <Typography>Role: {session.user.role}</Typography>
-                  </Box>
-                }
-
-            </Container>
-        </PageLayout>
+        </UserLayout>
     );
 }

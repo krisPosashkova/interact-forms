@@ -147,26 +147,27 @@ export const theme = createTheme({
         },
         MuiSelect: {
             styleOverrides: {
+
                 root: {
                     height: "2.125rem",
-                    borderRadius: 8,
-                    "& .MuiOutlinedInput-notchedOutline": {
-                        border: "none",
-                        boxShadow: "var(--shadows-5)"
-                    },
-                    "&:before": {
-                        content: "\"\"",
-                        borderBottom: "1px solid transparent"
-                    },
-                    "&.Mui-focused:after": {
-                        borderBottom: "1px solid transparent"
-                    },
-
-                    "&:active": {
-                        "&:before": {
-                            borderBottom: "1px solid transparent"
-                        }
-                    }
+                    borderRadius: 8
+                    // "& .MuiOutlinedInput-notchedOutline": {
+                    //     border: "none",
+                    //     boxShadow: "var(--shadows-5)"
+                    // },
+                    // "&:before": {
+                    //     content: "\"\"",
+                    //     borderBottom: "1px solid transparent"
+                    // },
+                    // "&.Mui-focused:after": {
+                    //     borderBottom: "1px solid transparent"
+                    // },
+                    //
+                    // "&:active": {
+                    //     "&:before": {
+                    //         borderBottom: "1px solid transparent"
+                    //     }
+                    // }
                 }
             }
         },

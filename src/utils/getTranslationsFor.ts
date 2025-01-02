@@ -8,12 +8,12 @@ export async function getTranslationsFor(...namespaces: string[]) {
     for (const namespace of namespaces) {
         try {
             translations[namespace.toLowerCase()] = await getTranslations({
-                locale: routing.defaultLocale, // Всегда пробуем сначала с дефолтной локалью
+                locale: routing.defaultLocale,
                 namespace
             });
         } catch (error) {
             console.warn(`Failed to load translations for namespace ${namespace}, using default locale`, error);
-            // Пробуем загрузить с явно указанной дефолтной локалью
+
             translations[namespace.toLowerCase()] = await getTranslations({
                 locale: "en",
                 namespace

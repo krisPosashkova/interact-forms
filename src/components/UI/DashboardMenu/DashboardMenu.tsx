@@ -45,6 +45,7 @@ export default function DashboardMenu({ menuKey }: Props) {
 
                                     {item.href ? (
                                         <ListItemButton component={Link} href={item.href}
+
                                                         sx={{ justifyContent: { xs: "center", md: "start" } }}>
 
                                             <ListItemIcon

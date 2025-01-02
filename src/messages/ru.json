@@ -68,9 +68,15 @@
     "placeholder": "Что ты ищешь?",
     "noResult": "Нет результатов"
   },
+  "Dialog": {
+    "warning": "Предупреждение",
+    "yourselfActionContent": "Вы выбрали себя в этом действии. Вы уверены, что хотите продолжить?"
+  },
   "Event": {
     "close": "Закрыть",
-    "signin": "Войти"
+    "signin": "Войти",
+    "selected": "Выбранно",
+    "proceed": "Продолжить"
   },
   "MenuProfile": {
     "openMenuProfile": "Открыть меню профиля:",
@@ -91,6 +97,13 @@
   "Template": {
     "author": "Автор"
   },
+  "UsersTable": {
+    "title": "Пользователи",
+    "username": "Имя",
+    "email": "Эл.адрес",
+    "updatedAt": "Последнее обновление",
+    "role": "Роль"
+  },
   "Errors": {
     "invalidEmailOrPassword": "Неверный email или пароль",
     "allFieldsRequired": "Все поля обязательны для заполнения",
@@ -107,10 +120,14 @@
     "duplicateEntry": "Запись с такими данными уже существует",
     "conflictUpdatingData": "Конфликт при изменении связанных данных",
     "databaseError": "Ошибка базы данных",
-    "databaseUnknownError": "Неизвестная ошибка базы данных"
+    "databaseUnknownError": "Неизвестная ошибка базы данных",
+    "usersNotFound": "No users found"
   },
   "Success": {
     "registrationSuccessful": "Регистрация успешна",
-    "loginSuccessful": "Вход в систему выполнен успешно"
+    "loginSuccessful": "Вход в систему выполнен успешно",
+    "updateRole": "Роль пользователя была обновлена на {newRole}",
+    "deleteUser": "Удалено успешно.",
+    "getUsers": "Успешно получены пользователи"
   }
 }

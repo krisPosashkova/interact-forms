@@ -24,12 +24,12 @@ export default async function DashboardLayout({ children, menuKey, session, tran
         <Box sx={{ display: "flex" }}>
             <HeaderWithBar />
             <DashboardMenu menuKey={menuKey} />
-            <Box component="main" sx={{ flexGrow: 1 }}>
+            <Box component="main" sx={{ flexGrow: 1, height: "100svh", overflowY: "auto" }}>
                 <Toolbar sx={{ mb: 5 }} />
                 <Container maxWidth="xl">
                     {session &&
-                      <Box>
-                        <Typography variant={"h6"} component={"h1"}>{title}</Typography>
+                      <Box sx={{ mb: 6 }}>
+                        <Typography variant={"h6"} sx={{ mb: 3 }} component={"h1"}>{title}</Typography>
                           {[
                               { label: name, value: session.user.name },
                               { label: email, value: session.user.email },
