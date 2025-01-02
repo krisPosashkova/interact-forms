@@ -16,7 +16,7 @@ type Props<T> = {
 }
 
 function TableHeadComponent<T>({ data }: Props<T>) {
-    const { headCells, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = data;
+    const { headCells, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, enableCheckbox } = data;
 
     const createSortHandler = (property: keyof T) => (event: React.MouseEvent<unknown>) => {
         onRequestSort(event, property);
@@ -25,41 +25,48 @@ function TableHeadComponent<T>({ data }: Props<T>) {
     return (
         <TableHead>
             <TableRow>
-                <TableCell padding="checkbox">
-                    <Checkbox
-                        color="primary"
-                        indeterminate={numSelected > 0 && numSelected < rowCount}
-                        checked={rowCount > 0 && numSelected === rowCount}
-                        onChange={onSelectAllClick}
-                        inputProps={{
-                            "aria-label": "select all items"
-                        }}
-                    />
-                </TableCell>
+                {enableCheckbox && (
+                    <TableCell padding="checkbox">
+                        <Checkbox
+                            color="primary"
+                            indeterminate={numSelected > 0 && numSelected < rowCount}
+                            checked={rowCount > 0 && numSelected === rowCount}
+                            onChange={onSelectAllClick}
+                            inputProps={{
+                                "aria-label": "select all items"
+                            }}
+                        />
+                    </TableCell>
+                )}
                 {headCells.map((headCell, index) => (
                     <TableCell
                         key={index}
-                        align={headCell.numeric ? "right" : "left"}
+                        align={headCell.align || (headCell.numeric ? "right" : "left")}
                         padding={headCell.disablePadding ? "none" : "normal"}
-                        sortDirection={orderBy === headCell.id ? order : false}
+                        sortDirection={headCell.sortable && orderBy === headCell.id ? order : false}
                         sx={{
                             fontWeight: "700"
                         }}
                     >
-                        <TableSortLabel
-                            active={orderBy === headCell.id}
-                            direction={orderBy === headCell.id ? order : "asc"}
-                            onClick={createSortHandler(headCell.id as keyof T)}
-                        >
-                            {headCell.label}
-                            {orderBy === headCell.id ? (
-                                <Box component="span" sx={visuallyHidden}>
-                                    {order === "desc" ? "sorted descending" : "sorted ascending"}
-                                </Box>
-                            ) : null}
-                        </TableSortLabel>
+                        {headCell.sortable ? (
+                            <TableSortLabel
+                                active={orderBy === headCell.id}
+                                direction={orderBy === headCell.id ? order : "asc"}
+                                onClick={createSortHandler(headCell.id as keyof T)}
+                            >
+                                {headCell.label}
+                                {orderBy === headCell.id ? (
+                                    <Box component="span" sx={visuallyHidden}>
+                                        {order === "desc" ? "sorted descending" : "sorted ascending"}
+                                    </Box>
+                                ) : null}
+                            </TableSortLabel>
+                        ) : (
+                            headCell.label
+                        )}
                     </TableCell>
                 ))}
+
                 <TableCell
                     align="left"
                     padding="none"

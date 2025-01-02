@@ -1,8 +1,7 @@
 import { memo } from "react";
 import { Stack } from "@mui/material";
 import Tag from "./Tag";
-import {ITagList} from "@/types/templates/tag.types";
-
+import { ITagList } from "@/types/api/tag.types";
 
 
 const TagsList = ({ tags }: ITagList) => {
@@ -15,7 +14,7 @@ const TagsList = ({ tags }: ITagList) => {
             component="nav"
             aria-label="tags navigation"
         >
-            <Tag name="All" />
+            <Tag name="All" id={-1} />
             {tags.map((tag) => (
                 <Tag key={tag.id} id={tag.id} name={tag.name} />
             ))}

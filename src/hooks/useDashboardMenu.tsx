@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { DashboardMenuKey, DashboardMenuSection } from "@/types/dashboard/dashboard.types";
-import { Logout, Person2 } from "@mui/icons-material";
+import { Logout, Person2, Folder } from "@mui/icons-material";
 import { logout } from "@/app/actions/auth";
 
 export const useDashboardMenu = (menuKey: DashboardMenuKey): DashboardMenuSection[] => {
@@ -10,7 +10,8 @@ export const useDashboardMenu = (menuKey: DashboardMenuKey): DashboardMenuSectio
         admin: [
             {
                 items: [
-                    { text: t("users"), icon: <Person2 />, href: "/admin/dashboard/users" }
+                    { text: t("users"), icon: <Person2 />, href: "/admin/dashboard/users" },
+                    { text: t("templates"), icon: <Folder />, href: "/admin/dashboard/templates" }
                 ]
             },
             {
@@ -20,7 +21,7 @@ export const useDashboardMenu = (menuKey: DashboardMenuKey): DashboardMenuSectio
         user: [
             {
                 items: [
-                    { text: t("templates"), icon: <Person2 />, href: "/user/profile" }
+                    { text: t("templates"), icon: <Folder />, href: "/user/profile" }
                 ]
             },
             {

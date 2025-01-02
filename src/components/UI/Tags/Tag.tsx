@@ -3,7 +3,7 @@ import { memo } from "react";
 import { Chip } from "@mui/material";
 import { Link } from "@/i18n/routing";
 import { useActiveTag } from "@/hooks/useActiveTag";
-import {ITag} from "@/types/templates/tag.types"
+import { ITag } from "@/types/api/tag.types";
 
 
 const Tag = ({ id, name }: ITag) => {
@@ -19,7 +19,7 @@ const Tag = ({ id, name }: ITag) => {
             color="primary"
             sx={{
                 fontWeight: isActive ? "bold" : "normal",
-                borderColor: isActive ? "secondary.main" : "primary.main",
+                borderColor: isActive ? "secondary.main" : "primary.main"
             }}
         />
     );

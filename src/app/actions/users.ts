@@ -1,28 +1,19 @@
 "use server";
 import prisma from "@/lib/db";
 import { handleError } from "@/utils/errors/handlers";
-import { type ApiResponse, IErrorResponse, IUser } from "@/types/apiResponse.types";
+import { type ApiResponse } from "@/types/api/apiResponse.types";
+import { IUser } from "@/types/api/user.type";
 import { Session } from "next-auth";
-import { AuthorizationError } from "@/utils/errors/auth";
 import { ERROR_CODES } from "@/utils/errors/constants";
-import type { user_role as userRole } from "@prisma/client";
+import type { UserRole } from "@prisma/client";
 import { ValidationError } from "@/utils/errors/validation";
 import { signOut } from "@/lib/auth";
 import { getTranslations } from "next-intl/server";
-
-export async function checkAdminRole(session: Session | null): Promise<{ success: true } | IErrorResponse> {
-
-    if (!session || session.user?.role !== "admin") {
-        return handleError(new AuthorizationError(
-            ERROR_CODES.AUTH.FORBIDDEN
-        ));
-    }
-    return { success: true };
-}
+import { checkAdminRole } from "@/app/actions/auth";
 
 export async function updateUserRole(
     userId: number,
-    newRole: userRole,
+    newRole: UserRole,
     session: Session | null
 ): Promise<ApiResponse<IUser | null>> {
     const t = await getTranslations("Success");
@@ -34,7 +25,7 @@ export async function updateUserRole(
             return checkRole;
         }
 
-        const validRoles: userRole[] = ["admin", "user"];
+        const validRoles: UserRole[] = ["admin", "user"];
         if (!validRoles.includes(newRole)) {
 
             return handleError(new ValidationError(
@@ -43,7 +34,7 @@ export async function updateUserRole(
             ));
         }
 
-        const updatedUser = await prisma.users.update({
+        const updatedUser = await prisma.user.update({
             where: { id: userId },
             data: { role: newRole }
         });
@@ -78,7 +69,7 @@ export async function deleteUser(userIds: number[], session: Session | null): Pr
             return checkRole;
         }
 
-        await prisma.users.deleteMany({
+        await prisma.user.deleteMany({
             where: {
                 id: {
                     in: userIds
@@ -92,14 +83,14 @@ export async function deleteUser(userIds: number[], session: Session | null): Pr
                 success: true,
                 data: null,
                 redirect: true,
-                message: t("Success.deleteUser")
+                message: t("Success.delete")
             };
         }
 
         return {
             success: true,
             data: null,
-            message: t("Success.deleteUser")
+            message: t("Success.delete")
         };
 
     } catch (error) {
@@ -110,14 +101,14 @@ export async function deleteUser(userIds: number[], session: Session | null): Pr
 export async function getUsers(): Promise<ApiResponse<IUser[] | null>> {
     try {
         const t = await getTranslations();
-        const users = await prisma.users.findMany({
+        const users = await prisma.user.findMany({
             select: {
                 id: true,
                 username: true,
                 email: true,
                 role: true,
-                created_at: true,
-                updated_at: true
+                createdAt: true,
+                updatedAt: true
             }
         });
 

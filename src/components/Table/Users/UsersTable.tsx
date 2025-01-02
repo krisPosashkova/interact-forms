@@ -5,7 +5,7 @@ import {
     MenuItem, Tooltip
 } from "@mui/material";
 
-import { IUser } from "@/types/apiResponse.types";
+import { IUser } from "@/types/api/user.type";
 import { TableComponent } from "@/components/Table/TableComponent";
 import type { Session } from "next-auth";
 import { Delete } from "@mui/icons-material";
@@ -13,7 +13,7 @@ import CustomSnackbars from "@/components/UI/CustomSnackbar";
 import CustomDialog from "@/components/UI/Dialog";
 import useUsersTable from "@/components/Table/Users/useUsersTable";
 import { useTranslations } from "next-intl";
-import { user_role } from "@prisma/client";
+import { UserRole } from "@prisma/client";
 import { capitalize } from "@mui/material";
 import { Action } from "@/types/components/table.types";
 
@@ -25,10 +25,6 @@ type Props = {
 export default function UsersTable({ session, users }: Props) {
 
     const t = useTranslations();
-    // const t = {
-    //     usersTable: useTranslations("UsersTable"),
-    //     dialog: useTranslations("Dialog")
-    // };
 
     const usersData = useMemo(() =>
         users?.map((user) => ({
@@ -59,7 +55,7 @@ export default function UsersTable({ session, users }: Props) {
         handleDeleteUsers,
         loading,
         error,
-        loadingUsers
+        loadingRows
     } = table;
 
 
@@ -69,15 +65,34 @@ export default function UsersTable({ session, users }: Props) {
 
 
     const headCells = [
-        { id: "username" as keyof IUser, numeric: false, disablePadding: true, label: t("UsersTable.username") },
-        { id: "email" as keyof IUser, numeric: false, disablePadding: false, label: t("UsersTable.email") },
         {
-            id: "updated_at" as keyof IUser,
+            id: "username" as keyof IUser,
             numeric: false,
             disablePadding: false,
-            label: t("UsersTable.updatedAt")
+            label: t("UsersTable.username"),
+            sortable: true
         },
-        { id: "role" as keyof IUser, numeric: false, disablePadding: false, label: t("UsersTable.role") }
+        {
+            id: "email" as keyof IUser,
+            numeric: false,
+            disablePadding: false,
+            label: t("UsersTable.email"),
+            sortable: true
+        },
+        {
+            id: "updatedAt" as keyof IUser,
+            numeric: false,
+            disablePadding: false,
+            label: t("UsersTable.updatedAt"),
+            sortable: true
+        },
+        {
+            id: "role" as keyof IUser,
+            numeric: false,
+            disablePadding: false,
+            label: t("UsersTable.role"),
+            sortable: true
+        }
     ];
 
     const columns = [
@@ -87,7 +102,7 @@ export default function UsersTable({ session, users }: Props) {
             id: "updated_at",
             label: "Update",
             render: (row: IUser) =>
-                row.updated_at ? new Date(row.updated_at).toLocaleDateString() : "No data available"
+                row.updatedAt ? new Date(row.updatedAt).toLocaleDateString() : "No data available"
         },
         {
             id: "role",
@@ -103,7 +118,7 @@ export default function UsersTable({ session, users }: Props) {
                         sx={{ width: "100%" }}
                     >
 
-                        {Object.entries(user_role)
+                        {Object.entries(UserRole)
                             .filter(([key]) => isNaN(Number(key)))
                             .map(([key, value]) => (
                                 <MenuItem key={value} value={value}>
@@ -127,6 +142,7 @@ export default function UsersTable({ session, users }: Props) {
     ];
 
     const tableProps = {
+        enableCheckbox: true,
         data: usersData,
         headCells,
         title: t("UsersTable.title"),
@@ -141,7 +157,7 @@ export default function UsersTable({ session, users }: Props) {
         orderBy,
         page,
         rowsPerPage,
-        loadingUsers,
+        loadingRows,
         onChangePage,
         onChangeRowsPerPage,
         onSelectAllClick,

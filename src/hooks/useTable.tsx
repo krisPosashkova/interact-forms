@@ -6,6 +6,7 @@ import { createRows } from "@/utils/createRows";
 
 import { UseTableReturn, TableData } from "@/types/components/table.types";
 
+
 const useTable = <T extends { id: number | string }>(
     data: TableData<T> | null
 ): UseTableReturn<T> => {
@@ -19,7 +20,6 @@ const useTable = <T extends { id: number | string }>(
 
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
-
 
     useEffect(() => {
         if (data) {
@@ -53,7 +53,6 @@ const useTable = <T extends { id: number | string }>(
         setOrder(isAsc ? "desc" : "asc");
         setOrderBy(property);
     };
-
 
     return {
         emptyRows,

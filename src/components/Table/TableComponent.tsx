@@ -45,8 +45,8 @@ export function TableComponent<T extends { id: number | string }>({ table, child
         onRequestSort,
         loading,
         error,
-        loadingUsers
-
+        loadingRows,
+        enableCheckbox
     } = table;
 
     const tableHeadProps = {
@@ -56,7 +56,8 @@ export function TableComponent<T extends { id: number | string }>({ table, child
         orderBy: orderBy,
         numSelected: selected.length,
         rowCount: data.length,
-        onRequestSort: onRequestSort
+        onRequestSort: onRequestSort,
+        enableCheckbox: enableCheckbox
     };
 
     const tableToolbarProps = {
@@ -65,8 +66,6 @@ export function TableComponent<T extends { id: number | string }>({ table, child
         conditionalActions: conditionalActions,
         alwaysVisibleActions: alwaysVisibleActions
     };
-
-    console.log(loading);
 
     if (loading) {
         return (
@@ -99,25 +98,26 @@ export function TableComponent<T extends { id: number | string }>({ table, child
                                     return (
                                         <TableRow
                                             hover
-                                            onClick={(event) =>
-                                                onClick(event, Number(row.id))
-                                            }
-                                            role="checkbox"
                                             aria-checked={isItemSelected}
                                             tabIndex={-1}
                                             key={row.id}
                                             selected={isItemSelected}>
 
-                                            <TableCell padding="checkbox">
-                                                <Checkbox
-                                                    color="primary"
-                                                    checked={isItemSelected}
-                                                    inputProps={{
-                                                        "aria-labelledby":
-                                                        labelId
-                                                    }}
-                                                />
-                                            </TableCell>
+                                            {enableCheckbox && (
+                                                <TableCell padding="checkbox">
+                                                    <Checkbox
+                                                        color="primary"
+                                                        onClick={(event) =>
+                                                            onClick(event, Number(row.id))
+                                                        }
+                                                        checked={isItemSelected}
+                                                        inputProps={{
+                                                            "aria-labelledby":
+                                                            labelId
+                                                        }}
+                                                    />
+                                                </TableCell>
+                                            )}
                                             {columns.map((column, index) => (
                                                 <TableCell key={index}>{column.render(row)}</TableCell>
                                             ))}
@@ -126,7 +126,7 @@ export function TableComponent<T extends { id: number | string }>({ table, child
                                                 padding="none"
                                                 sx={{ width: 60, textAlign: "center" }}
                                             >
-                                                {loadingUsers[+row.id] ? (
+                                                {loadingRows[+row.id] ? (
                                                     <CircularProgress
                                                         size={24}
                                                     />

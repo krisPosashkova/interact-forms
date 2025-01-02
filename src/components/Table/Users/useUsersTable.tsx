@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { IUser, ActionHandlers, DeleteResponse, UpdateRoleResponse } from "@/types/apiResponse.types";
+import { IUser } from "@/types/api/user.type";
+import { ActionHandlers, DeleteResponse, UpdateRoleResponse } from "@/types/api/apiResponse.types";
 import { SelectChangeEvent } from "@mui/material";
 import { useSnackbarState } from "@/hooks/useSnackbarState";
 import type { Session } from "next-auth";
 import { deleteUser, updateUserRole } from "@/app/actions/users";
-import { user_role as userRole } from "@prisma/client";
+import { UserRole } from "@prisma/client";
 import useTable from "@/hooks/useTable";
 import { useRouter } from "@/i18n/routing";
 
@@ -16,17 +17,17 @@ const useUsersTable = (usersData: IUser[] | null, session: Session | null) => {
     const { snackbarState, handleSnackbar } = useSnackbarState();
 
     const [error, setError] = useState<string | null>(null);
-    const [loadingUsers, setLoadingUsers] = useState<Record<number, boolean>>({});
+    const [loadingRows, setLoadingRows] = useState<Record<number, boolean>>({});
     const [showWarning, setShowWarning] = useState(false);
     const [isConfirm, setIsConfirm] = useState(false);
     const [actionType, setActionType] = useState<keyof ActionHandlers>("delete");
     const [selectedForAction, setSelectedForAction] = useState<number[]>([]);
-    const [tempRole, setTempRole] = useState<userRole>(session?.user.role);
+    const [tempRole, setTempRole] = useState<UserRole>(session?.user.role);
 
 
     const updateLoadingState = (selected: number[] | number, isLoading: boolean) => {
         const selectedArray = Array.isArray(selected) ? selected : [selected];
-        setLoadingUsers((prevState) => ({
+        setLoadingRows((prevState) => ({
             ...prevState,
             ...selectedArray.reduce<Record<number, boolean>>(
                 (acc, userId) => ({ ...acc, [userId]: isLoading }),
@@ -82,7 +83,7 @@ const useUsersTable = (usersData: IUser[] | null, session: Session | null) => {
             }
             return response;
         },
-        updateRole: async (id: number, newRole: userRole) => {
+        updateRole: async (id: number, newRole: UserRole) => {
             const response = await updateUserRole(id, newRole, session);
             if (response.success) {
                 table.setRows((prevRows) =>
@@ -95,7 +96,7 @@ const useUsersTable = (usersData: IUser[] | null, session: Session | null) => {
         }
     }), [session, table]);
 
-    const handleAction = useCallback(async (action: keyof ActionHandlers, ...args: [number[]] | [number, userRole]): Promise<void> => {
+    const handleAction = useCallback(async (action: keyof ActionHandlers, ...args: [number[]] | [number, UserRole]): Promise<void> => {
 
         if (action === "delete") {
             const selected = args[0];
@@ -108,10 +109,8 @@ const useUsersTable = (usersData: IUser[] | null, session: Session | null) => {
             updateLoadingState(selected, true);
 
             try {
-                const response = await actionHandlers[action](selected);
-                console.log(response, "res");
+                const response = await actionHandlers[action]?.(selected);
                 handleActionResponse(response, action);
-
             } catch (err) {
                 handleSnackbar("error", err instanceof Error ? err.message : "Unknown error");
             } finally {
@@ -126,16 +125,13 @@ const useUsersTable = (usersData: IUser[] | null, session: Session | null) => {
             const selectedId = Array.isArray(id) ? id[0] : id;
 
             if (isCurrentUserSelected(selectedId) && !isConfirm) {
-                console.log(action, id);
                 promptConfirmation(action, selectedId);
                 return;
             }
             updateLoadingState(selectedId, true);
 
-            console.log("updateUserRole");
-
             try {
-                const response = await actionHandlers[action](selectedId, newRole);
+                const response = await actionHandlers[action]?.(selectedId, newRole);
                 handleActionResponse(response, action);
             } catch (err) {
 
@@ -150,7 +146,7 @@ const useUsersTable = (usersData: IUser[] | null, session: Session | null) => {
     const handleDeleteUsers = (selected: number[]) => handleAction("delete", selected);
 
     const handleUpdateRole = async (event: SelectChangeEvent<string | null>, id: number) => {
-        const newRole = event.target.value as userRole;
+        const newRole = event.target.value as UserRole;
         if (newRole === "admin" || newRole === "user") {
             setTempRole(newRole);
             await handleAction("updateRole", id, newRole);
@@ -159,8 +155,6 @@ const useUsersTable = (usersData: IUser[] | null, session: Session | null) => {
 
 
     useEffect(() => {
-        console.log(isConfirm, actionType, "use effect");
-
         if (isConfirm && actionType) {
             if (actionType === "updateRole" && tempRole) {
                 const selectedId = Array.isArray(selectedForAction) ? selectedForAction[0] : selectedForAction;
@@ -177,7 +171,7 @@ const useUsersTable = (usersData: IUser[] | null, session: Session | null) => {
         ...table,
         error,
         snackbarState,
-        loadingUsers,
+        loadingRows,
         showWarning,
         setShowWarning,
         confirmAction,
