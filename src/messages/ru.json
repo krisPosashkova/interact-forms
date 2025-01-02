@@ -76,7 +76,9 @@
     "close": "Закрыть",
     "signin": "Войти",
     "selected": "Выбранно",
-    "proceed": "Продолжить"
+    "proceed": "Продолжить",
+    "delete": "Удалить",
+    "selectRole": "Выбрать роль"
   },
   "MenuProfile": {
     "openMenuProfile": "Открыть меню профиля:",

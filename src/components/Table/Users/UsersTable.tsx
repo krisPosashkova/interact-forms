@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 import {
     Select,
-    MenuItem
+    MenuItem, Tooltip
 } from "@mui/material";
 
 import { IUser } from "@/types/apiResponse.types";
@@ -15,6 +15,7 @@ import useUsersTable from "@/components/Table/Users/useUsersTable";
 import { useTranslations } from "next-intl";
 import { user_role } from "@prisma/client";
 import { capitalize } from "@mui/material";
+import { Action } from "@/types/components/table.types";
 
 type Props = {
     session: Session | null;
@@ -23,10 +24,11 @@ type Props = {
 
 export default function UsersTable({ session, users }: Props) {
 
-    const t = {
-        usersTable: useTranslations("UsersTable"),
-        dialog: useTranslations("Dialog")
-    };
+    const t = useTranslations();
+    // const t = {
+    //     usersTable: useTranslations("UsersTable"),
+    //     dialog: useTranslations("Dialog")
+    // };
 
     const usersData = useMemo(() =>
         users?.map((user) => ({
@@ -67,15 +69,15 @@ export default function UsersTable({ session, users }: Props) {
 
 
     const headCells = [
-        { id: "username" as keyof IUser, numeric: false, disablePadding: true, label: t.usersTable("username") },
-        { id: "email" as keyof IUser, numeric: false, disablePadding: false, label: t.usersTable("email") },
+        { id: "username" as keyof IUser, numeric: false, disablePadding: true, label: t("UsersTable.username") },
+        { id: "email" as keyof IUser, numeric: false, disablePadding: false, label: t("UsersTable.email") },
         {
             id: "updated_at" as keyof IUser,
             numeric: false,
             disablePadding: false,
-            label: t.usersTable("updatedAt")
+            label: t("UsersTable.updatedAt")
         },
-        { id: "role" as keyof IUser, numeric: false, disablePadding: false, label: t.usersTable("role") }
+        { id: "role" as keyof IUser, numeric: false, disablePadding: false, label: t("UsersTable.role") }
     ];
 
     const columns = [
@@ -91,31 +93,35 @@ export default function UsersTable({ session, users }: Props) {
             id: "role",
             label: "Role",
             render: (row: IUser) => (
-                <Select
-                    value={row.role || ""}
-                    onChange={(event) => handleUpdateRole(event, +row.id)}
-                    displayEmpty
-                    variant="outlined"
-                    inputProps={{ "aria-label": "Change Role" }}
-                    sx={{ width: "100%" }}
-                >
+                <Tooltip title={t("Event.selectRole")}>
+                    <Select
+                        value={row.role || ""}
+                        onChange={(event) => handleUpdateRole(event, +row.id)}
+                        displayEmpty
+                        variant="outlined"
+                        inputProps={{ "aria-label": "Change Role" }}
+                        sx={{ width: "100%" }}
+                    >
 
-                    {Object.entries(user_role)
-                        .filter(([key]) => isNaN(Number(key)))
-                        .map(([key, value]) => (
-                            <MenuItem key={value} value={value}>
-                                {capitalize(key)}
-                            </MenuItem>
-                        ))}
-                </Select>
+                        {Object.entries(user_role)
+                            .filter(([key]) => isNaN(Number(key)))
+                            .map(([key, value]) => (
+                                <MenuItem key={value} value={value}>
+                                    {capitalize(key)}
+                                </MenuItem>
+                            ))}
+                    </Select>
+                </Tooltip>
+
             )
         }
     ];
 
-    const conditionalActions = [
+    const conditionalActions: Action[] = [
         {
             icon: <Delete />,
-            onClick: () => handleDeleteUsers(selected)
+            onClick: () => handleDeleteUsers(selected),
+            tooltip: t("Event.delete")
 
         }
     ];
@@ -123,7 +129,7 @@ export default function UsersTable({ session, users }: Props) {
     const tableProps = {
         data: usersData,
         headCells,
-        title: t.usersTable("title"),
+        title: t("UsersTable.title"),
         columns,
         alwaysVisibleActions: [],
         conditionalActions,
@@ -151,8 +157,8 @@ export default function UsersTable({ session, users }: Props) {
                 showWarning={showWarning}
                 setShowWarning={setShowWarning}
                 confirmAction={confirmAction}
-                title={t.dialog("warning")}
-                content={t.dialog("yourselfActionContent")}
+                title={t("Dialog.warning")}
+                content={t("Dialog.yourselfActionContent")}
             />
         </TableComponent>
     );

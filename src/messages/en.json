@@ -72,7 +72,9 @@
     "close": "Close",
     "signin": "Sign in",
     "selected": "Selected",
-    "proceed": "Proceed"
+    "proceed": "Proceed",
+    "delete": "Delete",
+    "selectRole": "Select a role"
   },
   "Dialog": {
     "warning": "Warning",
@@ -128,6 +130,7 @@
     "loginSuccessful": "Login was completed successfully",
     "updateRole": "User's role has been updated to {newRole}",
     "deleteUser": "Deleted successfully.",
-    "getUsers": "Successfully received users"
+    "getUsers": "Successfully received users",
+    "delete": "Удалить"
   }
 }
