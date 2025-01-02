@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-
 import {
     Drawer,
     Toolbar,
@@ -12,20 +11,21 @@ import {
     ListItemIcon,
     ListItemText
 } from "@mui/material";
-
 import { Link } from "@/i18n/routing";
 import { DashboardMenuKey } from "@/types/dashboard/dashboard.types";
 import { useDashboardMenu } from "@/hooks/useDashboardMenu";
+import { usePathname } from "next/navigation";
 
 type Props = {
-    menuKey: DashboardMenuKey
+    menuKey: DashboardMenuKey;
 };
 
 export default function DashboardMenu({ menuKey }: Props) {
     const menuSections = useDashboardMenu(menuKey);
+    const pathname = usePathname();
+    const pathWithoutLocale = pathname.replace(/^\/[a-z]{2}(?=\/|$)/, "");
 
     return (
-
         <Drawer
             variant="permanent"
             sx={{
@@ -40,48 +40,65 @@ export default function DashboardMenu({ menuKey }: Props) {
                 {menuSections.map((section, sectionIndex) => (
                     <React.Fragment key={sectionIndex}>
                         <List>
-                            {section.items.map((item, itemIndex) => (
-                                <ListItem key={itemIndex} disablePadding>
+                            {section.items.map((item, itemIndex) => {
+                                const isActive = pathWithoutLocale === item?.href;
 
-                                    {item.href ? (
-                                        <ListItemButton component={Link} href={item.href}
-
-                                                        sx={{ justifyContent: { xs: "center", md: "start" } }}>
-
-                                            <ListItemIcon
+                                return (
+                                    <ListItem key={itemIndex} disablePadding>
+                                        {item.href ? (
+                                            <ListItemButton
+                                                component={Link}
+                                                href={item.href}
                                                 sx={{
-                                                    minWidth: {
-                                                        xs: "min-content",
-                                                        md: 56
-                                                    }
-                                                }}>{item.icon}</ListItemIcon>
-                                            <ListItemText sx={{ display: { xs: "none", md: "flex" } }}
-                                                          primary={item.text} />
-                                        </ListItemButton>
-                                    ) : (
-                                        <ListItemButton component={"button"} onClick={item.onClick}
-                                                        sx={{ justifyContent: { xs: "center", md: "start" } }}>
-
-                                            <ListItemIcon
-                                                sx={{
-                                                    minWidth: {
-                                                        xs: "min-content",
-                                                        md: 56
-                                                    }
-                                                }}>{item.icon}</ListItemIcon>
-                                            <ListItemText sx={{ display: { xs: "none", md: "flex" } }}
-                                                          primary={item.text} />
-                                        </ListItemButton>
-                                    )}
-
-                                </ListItem>
-                            ))}
+                                                    justifyContent: { xs: "center", md: "start" },
+                                                    backgroundColor: isActive ? "rgba(0, 0, 0, 0.08)" : "inherit"
+                                                }}
+                                            >
+                                                <ListItemIcon
+                                                    sx={{
+                                                        minWidth: {
+                                                            xs: "min-content",
+                                                            md: 56
+                                                        }
+                                                    }}
+                                                >
+                                                    {item.icon}
+                                                </ListItemIcon>
+                                                <ListItemText
+                                                    sx={{ display: { xs: "none", md: "flex" } }}
+                                                    primary={item.text}
+                                                />
+                                            </ListItemButton>
+                                        ) : (
+                                            <ListItemButton
+                                                component={"button"}
+                                                onClick={item.onClick}
+                                                sx={{ justifyContent: { xs: "center", md: "start" } }}
+                                            >
+                                                <ListItemIcon
+                                                    sx={{
+                                                        minWidth: {
+                                                            xs: "min-content",
+                                                            md: 56
+                                                        }
+                                                    }}
+                                                >
+                                                    {item.icon}
+                                                </ListItemIcon>
+                                                <ListItemText
+                                                    sx={{ display: { xs: "none", md: "flex" } }}
+                                                    primary={item.text}
+                                                />
+                                            </ListItemButton>
+                                        )}
+                                    </ListItem>
+                                );
+                            })}
                         </List>
                         {sectionIndex < menuSections.length - 1 && <Divider />}
                     </React.Fragment>
                 ))}
             </Box>
         </Drawer>
-
     );
 }
