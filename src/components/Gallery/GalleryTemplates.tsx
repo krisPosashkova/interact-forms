@@ -10,12 +10,12 @@ interface GalleryProps {
 const Gallery = ({ data, category }: GalleryProps) => {
     return (
         <Box>
-            {data && (
+            {(data && data.length !== 0) && (
                 <>
                     <Divider><Typography component="h2" variant="h4"
                                          sx={{ margin: 2 }}>{category}</Typography></Divider>
                     <Grid2 container spacing={1}>
-                        {data.map((template, index) => (
+                        {data?.map((template, index) => (
                             <Grid2 size={{ xs: 12, sm: 6, md: 3 }} key={index}>
                                 <TemplateCard
                                     {...template}
@@ -24,7 +24,6 @@ const Gallery = ({ data, category }: GalleryProps) => {
                         ))}
                     </Grid2>
                 </>)}
-
         </Box>
 
     );
