@@ -15,7 +15,7 @@ const TemplatesList = ({ templates, tags }: TemplatesListProps) => {
         <>
             {tags && (<TagsList tags={tags} />)}
 
-            {templates.map((item, index) => (
+            {templates?.map((item, index) => (
                 <Gallery
                     key={index}
                     category={item.name}

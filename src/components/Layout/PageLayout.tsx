@@ -11,7 +11,7 @@ export default async function PageLayout({ children }: Props) {
     return (
         <Box sx={{ height: "100svh", overflowY: "auto" }}>
             <HeaderWithBar />
-            <Toolbar />
+            <Toolbar sx={{mb: 3}}/>
             {children}
         </Box>
     );

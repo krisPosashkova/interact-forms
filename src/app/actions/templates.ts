@@ -151,10 +151,9 @@ export async function getTemplatesByTagId(
     session: Session | null
 ): Promise<ApiResponse<{ tag: ITag | null; templates: ITemplateWithoutTags[] | ITemplate[] | null } | null>> {
     try {
-        const isAdmin = session?.user.role === "admin"; // Проверяем роль пользователя
-        const t = await getTranslations("Success"); // Получаем перевод для сообщений
+        const isAdmin = session?.user.role === "admin";
+        const t = await getTranslations("Success");
 
-        // Находим тег по ID и включаем шаблоны, связанные с этим тегом
         const tagWithTemplates = await prisma.tag.findUnique({
             where: { id: tagId },
             include: {
@@ -199,8 +198,36 @@ export async function getTemplatesByTagId(
             message: t("getTemplates")
         };
     } catch (error) {
-        return handleError(error); // Обработка ошибок
+        return handleError(error);
     }
 }
 
 
+export async function getTemplateById(
+    id: number
+): Promise<ApiResponse<ITemplate | null>> {
+    try {
+
+        const t = await getTranslations("Success");
+
+        const template = await prisma.template.findUnique({
+            where: { id },
+            include: {
+                templateTags: {
+                    include: {
+                        tag: true
+                    }
+                },
+                user: true
+            }
+        });
+
+        return {
+            success: true,
+            data: template,
+            message: t("getTemplates")
+        };
+    } catch (error) {
+        return handleError(error);
+    }
+}
